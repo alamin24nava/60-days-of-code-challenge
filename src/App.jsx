@@ -2,10 +2,7 @@ import {useState} from "react"
 import 'bootstrap/dist/css/bootstrap.min.css';
 function App() {
     const [noteTitle, setNoteTitle] = useState('')
-    const [notes, setNotes] = useState([
-        {id:1, title: "note 1"},
-        {id:3, title: "note 2"},
-    ])
+    const [notes, setNotes] = useState([])
     const [editMode, setEditMode] = useState(false)
     const [editableNote, setEditableNote] = useState(null)
     // hangle on change
