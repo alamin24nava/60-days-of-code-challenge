@@ -1,72 +1,38 @@
-import { useState } from 'react'
-import './App.css'
-import BioData from './components/BioData';
-const BioDataLists = [
-    {
-        name:"Tamim"  ,
-        email:"tamim@gmail.com"  ,
-        phone:"012548425787",
-        skills: ["bat", "ball", "something"],
-        socials: [
-            {platformName:"facebook", handle:"fb/tamim"},
-            {platformName:"linkedin", handle:"linkedin/tamim"},
-            {platformName:"x", handle:"x/tamim"},
-            {platformName:"something", handle:"something"},
-            ]
-        },
-    {
-        name:"afif"  ,
-        email:"afif@gmail.com"  ,
-        phone:"96385471",
-        skills: ["Css", "JS", "TTTL"],
-        socials: [
-            {platformName:"facebook", handle:"fb/afif"},
-            {platformName:"linkedin", handle:"linkedin/afif"},
-            {platformName:"x", handle:"x/afif"},
-            {platformName:"something", handle:"afif"},
-            ]
-        },
-    {
-        name:"santo"  ,
-        email:"santo@gmail.com"  ,
-        phone:"987548841",
-        skills: ["bat", "feilding"],
-        socials: [
-            {platformName:"facebook", handle:"fb/tamim"},
-            {platformName:"linkedin", handle:"linkedin/tamim"},
-            {platformName:"x", handle:"x/tamim"},
-            {platformName:"something", handle:"something"},
-            ]
-        },
-    {
-        name:"Liton"  ,
-        email:"Liton@gmail.com"  ,
-        phone:"987548745",
-        skills: ["bat", "WK"],
-        socials: [
-            {platformName:"facebook", handle:"fb/Liton"},
-            {platformName:"linkedin", handle:"linkedin/Liton"},
-            {platformName:"x", handle:"x/Liton"},
-            ]
-        },
-]
+import {useState} from "react"
 function App() {
+    const [counter, setCounter] = useState(0);
+    const [counter2, setCounter2] = useState(0);
+    const increaseHandler = () =>{
+        setCounter(counter +1)
+    }
+    const decreaseHandler = () =>{
+        setCounter(counter -1)
+    }
+    const increaseHandler2 = () =>{
+        setCounter2(counter2 +1)
+    }
+    const decreaseHandler2 = () =>{
+        setCounter2(counter2 -1)
+    }
+
+
     return (
         <>
-        <h1 style={{paddingBottom:"24px"}}>All Bio Data</h1>
-            <div style={{display:"flex"}}>
-            {BioDataLists.map((singleData)=>(
-                        <BioData 
-                        name={singleData.name}
-                        email={singleData.email}
-                        phone={singleData.phone}
-                        skills={singleData.skills}
-                        socials = {singleData.socials}
-                        />
-                    )
-                )} 
+            <div>
+                The value of the counter {counter}
+                <div>
+                <button onClick={increaseHandler}>Increase by 1</button>
+                <button onClick={decreaseHandler}>Decrease by 1</button>
+                </div>
             </div>
-
+            <br/>
+            <div>
+                The value of the counter {counter2} Other state
+                <div>
+                <button onClick={increaseHandler2}>Increase by 1</button>
+                <button onClick={decreaseHandler2}>Decrease by 1</button>
+                </div>
+            </div>
         </>
     )
 }
