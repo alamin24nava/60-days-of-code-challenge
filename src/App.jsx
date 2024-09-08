@@ -1,16 +1,11 @@
 import {useState} from "react"
 import 'bootstrap/dist/css/bootstrap.min.css';
 function App() {
-    const randomNumberInRange = () => {
-        return Math.floor(Math.random() * 10);
-    };
     const [user, setUser] = useState('');
     const [luckyNumber, setLuckyNumber] = useState('');
-    const [randomNum, setRandomNum] = useState(0);
     const [attempt, setAttempt] = useState(1);
     const [userList, setUserList] = useState([])
     const [result, setResult] = useState('')
-    const [test, setTest] = useState('')
     // Generate a Random Number
 
     // handle Change Name
@@ -20,17 +15,17 @@ function App() {
     // handle Change Number
     const handleChangeNumber = (e) =>{
         setLuckyNumber(e.target.value)
+        const numberLength = e.target.value.length
     }
+    const randomNumberInRange = () => {
+        return Math.floor(Math.random() * 10);
+    };
     // handle Submit
     const handleSubmit =(e)=>{
         e.preventDefault();
-        if(user === ''){
-            return alert('Please Provide Name')
+        if(user.trim() === '' || luckyNumber.trim() === ''){
+            return alert('Please Provide info')
         }
-        if(luckyNumber === ''){
-            return alert('Please Provide Your Lucky Number')
-        }
-        setRandomNum(randomNumberInRange());
         const newList = {
             id: Date.now() + "",
             user: user,
@@ -41,28 +36,27 @@ function App() {
         setLuckyNumber('')
         setAttempt(attempt + 1)
 
-        if(randomNum == luckyNumber && attempt == 1){
+        if(randomNumberInRange() == luckyNumber && attempt == 1){
             setResult(`${attempt}st Time Win`)
-        }else if(randomNum == luckyNumber && attempt == 2){
+        }else if(randomNumberInRange() == luckyNumber && attempt == 2){
             setResult(`${attempt}nd Time Win`)
-        }else if(randomNum == luckyNumber && attempt == 3){
+        }else if(randomNumberInRange() == luckyNumber && attempt == 3){
             setResult(`${attempt}rd Time Win`)
         }else{
             setResult(`N/A`)
         }
 
-   
-
-        console.log(`random ${randomNum}`)
-        console.log(`luck ${luckyNumber}`)
+        // console.log(`random ${randomNumberInRange()}`)
+        // console.log(`luck ${luckyNumber}`)
     }
+    console.log(userList)
     return (
         
         <div className="w-25 mx-auto m-5">
             <form onSubmit={handleSubmit}>
                 {/* <input onChange={handleChangeName} value={user} type="text" className="form-control mb-2" placeholder="Enter Name"/> */}
                 <input onChange={handleChangeName} value={user} type="text" className={`${attempt <= 3 ? 'form-control mb-2':'form-control mb-2 disabled'}`} placeholder="Enter Name"/>
-                <input onChange={handleChangeNumber} value={luckyNumber} type="number" className="form-control text-center mb-2" maxLength={2} placeholder="Enter Your Lucky Number" style={{height:'150px'}}/>
+                <input onChange={handleChangeNumber} value={luckyNumber} type="number" className="form-control text-center mb-2" max={9} placeholder="Enter Your Lucky Number" style={{height:'150px'}}/>
                 { attempt <= 3 ? (
                     <button className="btn btn-primary" type="submit">Try Your Luck</button>
                 ) : null}
