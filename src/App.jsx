@@ -5,9 +5,7 @@ function App() {
     const [luckyNumber, setLuckyNumber] = useState("")
     const [count, setCount] = useState(3)
     const [msg, setMsg] = useState('')
-    const [users, setUsers] = useState([
-        {id:1, name:'alamin', result:'Win'}
-    ]);
+    const [users, setUsers] = useState([]);
     // handleUserName
     const handleUserName = (e) =>{
         setUserName(e.target.value)
@@ -33,13 +31,14 @@ function App() {
         }
         if(count > 0){
             let currentCount = 4-count;
+            console.log(typeof currentCount)
             setCount(count - 1);
             let rand = Math.floor(Math.random() * 1);
             if(rand == luckyNumber){
                 const user = {
                     id: Date.now(),
                     name: userName,
-                    result: currentCount,
+                    result: `${currentCount}`,
                 }
                 setUsers([user, ...users])
                 setMsg("Success You win")
@@ -50,7 +49,7 @@ function App() {
                 const user = {
                     id: Date.now(),
                     name: userName,
-                    result: 'N/A',
+                    result: "0",
                 }
                 setUsers([user, ...users])
                 setMsg("Try again")
@@ -58,6 +57,20 @@ function App() {
             }
         }
     }
+
+    const sortedUser = users.sort((a, b) => {
+        if (a.result < b.result) {
+          return -1;
+        }
+        if (a.result > b.result) {
+          return 1;
+        }
+        return 0;
+      });
+
+    // console.log(sortedUser)
+
+
     return (
         
         <div className="w-25 mx-auto m-5">
@@ -77,7 +90,7 @@ function App() {
                 </thead>
                 <tbody>
                     {
-                        users.map((data) =>
+                        sortedUser.map((data) =>
                             <tr key={data.id}>
                                 <td>{data.name}</td>
                                 <td>{data.result}</td>
