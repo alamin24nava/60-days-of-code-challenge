@@ -65,13 +65,13 @@ function App() {
     const handleMakeStatus = (student, status)=>{
         const updatedStudent = studentLists.map((item)=>{
             if(item.id === student.id){
-                if(status === 'present'){
+                if(status === true){
                     return {...item, ispresent: true }
-                } else if(status === 'absent'){
+                } else if(status === false){
                     return {...item, ispresent: false }
                 } else if(status === 'remove'){
                     return {...item, ispresent: undefined}
-                } else if(status === 'undefined'){
+                } else if(status === 'accidentally'){
                     return {...item, ispresent: !item.ispresent}
                 }
             } 
@@ -79,9 +79,6 @@ function App() {
         })
         setStudentLists(updatedStudent)
     }
-
-
-
     return (
     <>
         <StudentForm 

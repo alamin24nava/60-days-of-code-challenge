@@ -26,8 +26,8 @@ const StudentsList = (props)=>{
                                             
                                             <button onClick={()=>handleEdit(student)} className="btn btn-sm btn-secondary">Edit</button>
                                             <button onClick={()=>hangleRemove(student.id)} className="btn btn-sm btn-danger">Remove</button>
-                                            <button onClick={()=>handleMakeStatus(student, "present")} className={`btn btn-sm btn-primary ${student.ispresent !== undefined && 'disabled'}`}>Make Present</button>
-                                            <button onClick={()=>handleMakeStatus(student, "absent")} className={`btn btn-sm btn-danger ${student.ispresent !== undefined && 'disabled'}`}>Make Absent</button>
+                                            <button onClick={()=>handleMakeStatus(student, true)} className={`btn btn-sm btn-primary ${student.ispresent !== undefined && 'disabled'}`}>Make Present</button>
+                                            <button onClick={()=>handleMakeStatus(student, false)} className={`btn btn-sm btn-danger ${student.ispresent !== undefined && 'disabled'}`}>Make Absent</button>
                                         </div>
                                     </td>
                                 </tr>

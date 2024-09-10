@@ -24,8 +24,7 @@ const StudentsStatus = (props)=>{
                                     </td>
                                     <td>
                                         <div className="d-flex gap-2">
-                                            {/* <button onClick={()=>handleToggleList(student)} className="btn btn-sm btn-secondary">Accidentally Added</button> */}
-                                            <button onClick={()=>handleMakeStatus(student, 'undefined')} className="btn btn-sm btn-secondary">Accidentally Added</button>
+                                            <button onClick={()=>handleMakeStatus(student, 'accidentally')} className="btn btn-sm btn-secondary">Accidentally Added</button>
                                             <button onClick={()=>handleMakeStatus(student, 'remove')} className="btn btn-sm btn-danger">Remove</button>
                                         </div>
                                     </td>
