@@ -1,101 +1,121 @@
-import { createContext, useState } from "react";
+import { createContext, useReducer, useState } from "react";
 
 export const StudentContext = createContext()
+const initState = {
+    studentName:'',
+    studentLists: [],
+    editMode:false,
+    editableStudent: null,
+    msg:'',
+}
+const studentReducer = (state = initState, action)=>{
+    switch(action.type){
+        case "studentName":{
+            return{
+                ...state,
+                studentName: action.payload,
+            }
+        }
+        case "handleCreate":{
+            const newStudent = {
+                id: Date.now() + "",
+                name: state.studentName,
+                isPresent: undefined,
+            }
+            return{
+                ...state,
+                studentLists: [...state.studentLists, newStudent],
+                studentName:"",
+            }
+        }
+        case "handleEdit":{
+            return{
+                ...state,
+                editMode:true,
+                editableStudent: action.payload,
+                studentName:action.payload.name
+            }
+        }
+        case "handleUpdate":{
+            return{
+                ...state,
+                studentLists : state.studentLists.map((item)=>{
+                    if(item.id === state.editableStudent.id){
+                        return {...item, name: state.studentName}
+                    }
+                    return item
+                }),
+                editMode:false,
+                editableStudent:null,
+                studentName:''
 
+            }
+        }
+        case "hangleRemove":{
+            return{
+                ...state,
+                studentLists: state.studentLists.filter((item)=> item.id !== action.payload)
+            }
+        }
+        case "handleMakeStatus":{
+            return {
+                ...state,
+                studentLists: state.studentLists.map((item)=> {
+                    if(item.id === action.payload.student.id){
+                        if(action.payload.status === true){
+                            return {...item, isPresent: true }
+                        } else if(action.payload.status === false){
+                            return {...item, isPresent: false }
+                        } else if(action.payload.status === 'remove'){
+                            return {...item, isPresent: undefined}
+                        } else if(action.payload.status === 'undefined'){
+                            return {...item, isPresent: !item.isPresent}
+                        }
+                    }
+                    return item
+                })
+            }
+        }
+        case "msg":{
+            return {
+                ...state,
+                msg : action.payload
+            }
+        }
+        default:{
+            return state;
+        }
+    }
+}
 const StudentProvider = (props)=>{
     const {children} = props
-    const [studentName, setStudentName] = useState("");
-    const [studentLists, setStudentLists] = useState([]);
-    const [editMode, setEditMode] = useState(false);
-    const [editableStudent, setEditableStudent] = useState(null);
-    const [msg, setMsg] = useState('')
-    // handleStudentName
+
+    const [studentStates, dispatch] = useReducer(studentReducer, initState)
+    const presentStudentList = studentLists.filter(present => present.ispresent === true)
+    const absentStudentList = studentLists.filter(present => present.ispresent === false)
     const handleStudentName = (e)=>{
-        setStudentName(e.target.value)
+        dispatch({type:'studentName', payload:e.target.value})
     }
     // handleSubmit
     const handleSubmit = (e)=>{
         e.preventDefault();
-        if(studentName.trim() === ''){
-            return setMsg('Please Provide Student Name')
+        if(studentStates.studentName.trim() === ''){
+            return dispatch({type:"msg", payload:'Please Provide Student Name'})
         }else{
-            setMsg('')
+            dispatch({type:"msg", payload:''})
         }
-        editMode ? handleUpdate() : handleCreate()
+        studentStates.editMode ? dispatch({type:"handleUpdate"}) : dispatch({type:"handleCreate"})
+        // console.log(handleCreate)
     }
-    // handleCreate
-    const handleCreate = ()=>{
-        const addStudent = {
-            id: Date.now() + "",
-            name: studentName,
-            ispresent: undefined,
-        }
-        setStudentLists([addStudent, ...studentLists]);
-        setStudentName("")
-    }
-    // hangleRemove
-    const hangleRemove= (studentId) =>{
-        const updateStudent = studentLists.filter((item)=> item.id !== studentId)
-        setStudentLists(updateStudent)
-    }
-    // handleEdit
-    const handleEdit = (student)=>{
-        setEditMode(true)
-        setStudentName(student.name)
-        setEditableStudent(student)
-    }
-    // handleUpdate
-    const handleUpdate = ()=>{
-        const updatedStudent = studentLists.map((item)=>{
-            if(item.id == editableStudent.id){
-                return {...item, name:studentName}
-            }
-            return item
-        })
-        setStudentLists(updatedStudent)
-        setStudentName('')
-        setEditMode(false)
-        setEditableStudent(null)
-    }
-    const presentStudentList = studentLists.filter(present => present.ispresent === true)
-    const absentStudentList = studentLists.filter(present => present.ispresent === false)
-    // handleMakeStatus
-    const handleMakeStatus = (student, status)=>{
-        const updatedStudent = studentLists.map((item)=>{
-            if(item.id === student.id){
-                if(status === 'present'){
-                    return {...item, ispresent: true }
-                } else if(status === 'absent'){
-                    return {...item, ispresent: false }
-                } else if(status === 'remove'){
-                    return {...item, ispresent: undefined}
-                } else if(status === 'undefined'){
-                    return {...item, ispresent: !item.ispresent}
-                }
-            } 
-            return item
-        })
-        setStudentLists(updatedStudent)
-    }
+
+
     const contextValue = {
-        studentName,
-        setStudentName,
-        studentLists,
-        setStudentLists,
-        editMode,
-        setEditMode,
-        editableStudent,
-        setEditableStudent,
-        msg,
-        setMsg,
+        studentStates,
+        dispatch,
         handleStudentName,
         handleSubmit,
-        hangleRemove,
-        handleEdit,
         presentStudentList,
-        absentStudentList,
-        handleMakeStatus,
-        studentLists
+        absentStudentList
     }
     return(
         <>

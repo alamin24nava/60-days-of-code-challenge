@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { StudentContext } from "../contexs/Student";
 const StudentsStatus = (props)=>{
-    const{handleMakeStatus,absentStudentList,presentStudentList} = useContext(StudentContext);
+    const{handleMakeStatus,absentStudentList,presentStudentList, studentStates, dispatch} = useContext(StudentContext);
     const{title, studentStatus} =props
     return(
         <div className="col-3">
