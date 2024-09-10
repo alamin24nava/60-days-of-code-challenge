@@ -1,10 +1,9 @@
 import { useContext } from "react";
 import { StudentContext } from "../contexs/Student";
 const StudentsStatus = (props)=>{
-    const{handleMakeStatus,} = useContext(StudentContext);
+    const{handleMakeStatus,absentStudentList,presentStudentList} = useContext(StudentContext);
     const{title, studentStatus} =props
     return(
-        
         <div className="col-3">
             <div className="border rounded-3 p-4">
                 <div className="d-flex justify-content-between gap-3">
@@ -18,8 +17,7 @@ const StudentsStatus = (props)=>{
                         </tr>
                     </thead>
                     <tbody>
-                        { 
-                            studentStatus?.map((student)=>
+                        { (studentStatus == true ? presentStudentList:absentStudentList)?.map((student)=>
                                 <tr key={student.id}>
                                     <td>
                                         <div className="d-flex gap-2 align-items-center">

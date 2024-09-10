@@ -5,9 +5,7 @@ import StudentProvider from './contexs/Student'
 
 createRoot(document.getElementById('root')).render(
     <StudentProvider>
-        <App>
-            <div>Hello</div>
-        </App>
+        <App/>
     </StudentProvider>
 
 )
