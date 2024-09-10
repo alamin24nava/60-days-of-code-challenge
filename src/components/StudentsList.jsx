@@ -1,5 +1,7 @@
-const StudentsList = (props)=>{
-    const{studentLists, handleEdit, hangleRemove, handleMakeStatus} = props
+import { useContext } from "react"
+import { StudentContext } from "../contexs/Student"
+const StudentsList = ()=>{
+    const{studentLists, handleEdit, hangleRemove, handleMakeStatus} = useContext(StudentContext)
     return(
         <div className="col-6">
             <div className="border rounded-3 p-4">
@@ -23,7 +25,6 @@ const StudentsList = (props)=>{
                                     </td>
                                     <td>
                                         <div className="d-flex gap-2">
-                                            
                                             <button onClick={()=>handleEdit(student)} className="btn btn-sm btn-secondary">Edit</button>
                                             <button onClick={()=>hangleRemove(student.id)} className="btn btn-sm btn-danger">Remove</button>
                                             <button onClick={()=>handleMakeStatus(student, "present")} className={`btn btn-sm btn-primary ${student.ispresent !== undefined && 'disabled'}`}>Make Present</button>
@@ -33,7 +34,6 @@ const StudentsList = (props)=>{
                                 </tr>
                             )
                         }
-                        {/* {student?.ispresent && disabled} */}
                     </tbody>
                 </table>
             </div>

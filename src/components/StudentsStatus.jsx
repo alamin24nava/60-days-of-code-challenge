@@ -1,6 +1,10 @@
+import { useContext } from "react";
+import { StudentContext } from "../contexs/Student";
 const StudentsStatus = (props)=>{
-    const{title,studentStatus,handleToggleList,handleMakeStatus}=props;
+    const{handleMakeStatus,} = useContext(StudentContext);
+    const{title, studentStatus} =props
     return(
+        
         <div className="col-3">
             <div className="border rounded-3 p-4">
                 <div className="d-flex justify-content-between gap-3">
@@ -24,7 +28,6 @@ const StudentsStatus = (props)=>{
                                     </td>
                                     <td>
                                         <div className="d-flex gap-2">
-                                            {/* <button onClick={()=>handleToggleList(student)} className="btn btn-sm btn-secondary">Accidentally Added</button> */}
                                             <button onClick={()=>handleMakeStatus(student, 'undefined')} className="btn btn-sm btn-secondary">Accidentally Added</button>
                                             <button onClick={()=>handleMakeStatus(student, 'remove')} className="btn btn-sm btn-danger">Remove</button>
                                         </div>
