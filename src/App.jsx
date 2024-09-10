@@ -1,11 +1,14 @@
 import {useRef, useState} from "react"
 import 'bootstrap/dist/css/bootstrap.min.css';
+import StudentForm from "./components/StudentForm";
+import StudentsList from "./components/StudentsList";
+import StudentsStatus from "./components/StudentsStatus";
 function App() {
     const [studentName, setStudentName] = useState("");
     const [studentLists, setStudentLists] = useState([]);
     const [editMode, setEditMode] = useState(false);
     const [editableStudent, setEditableStudent] = useState(null);
-    const [error, setError] = useState('')
+    const [msg, setMsg] = useState('')
 
     // handleStudentName
     const handleStudentName = (e)=>{
@@ -15,9 +18,9 @@ function App() {
     const handleSubmit = (e)=>{
         e.preventDefault();
         if(studentName.trim() === ''){
-            return setError('Please Provide Student Name')
+            return setMsg('Please Provide Student Name')
         }else{
-            setError('')
+            setMsg('')
         }
         editMode ? handleUpdate() : handleCreate()
     }
@@ -55,171 +58,58 @@ function App() {
         setEditMode(false)
         setEditableStudent(null)
     }
-    // handleMakePresent
-    const handleMakePresent = (student) =>{
-        if(student.ispresent !== undefined){
-           return alert(`This Student already Added ${student.ispresent === true? 'Present':'Absent'}`)
-        }
+
+    const presentStudentList = studentLists.filter(present => present.ispresent === true)
+    const absentStudentList = studentLists.filter(present => present.ispresent === false)
+    // handleMakeStatus
+    const handleMakeStatus = (student, status)=>{
         const updatedStudent = studentLists.map((item)=>{
             if(item.id === student.id){
-                return {...item, ispresent:true}
-            }
+                if(status === 'present'){
+                    return {...item, ispresent: true }
+                } else if(status === 'absent'){
+                    return {...item, ispresent: false }
+                } else if(status === 'remove'){
+                    return {...item, ispresent: undefined}
+                } else if(status === 'undefined'){
+                    return {...item, ispresent: !item.ispresent}
+                }
+            } 
             return item
         })
         setStudentLists(updatedStudent)
     }
-    // handleMakeAbsent
-    const handleMakeAbsent = (student) =>{
-        if(student.ispresent !== undefined){
-            return alert(`This Student already Added ${student.ispresent === true? 'Present':'Absent'}`)
-        }
-        const updatedStudent = studentLists.map((item)=>{
-            if(item.id === student.id){
-                return {...item, ispresent:false}
-            }
-            return item
-        })
-        setStudentLists(updatedStudent)
-    }
-    // handleToggleList
-    const handleToggleList = (student)=>{
-                const updatedStudent = studentLists.map((item)=>{
-            if(item.id === student.id){
-                return {...item, ispresent: !item.ispresent}
-            }
-            return item
-        })
-        setStudentLists(updatedStudent)
-    }
+
+
+
     return (
-        
-        <div className=" m-5">
-            <form onSubmit={handleSubmit} className="w-25 mx-auto mb-5">
-                <input onChange={handleStudentName} value={studentName} type="text" className="form-control mb-2" placeholder="Enter Name"/>
-                <p className="text-danger">{error}</p>
-                <button className="btn btn-primary w-100" type="submit">{editMode ? 'Update Student':'Add Student'}</button>
-            </form>  
-            <div className="row">
-                <div className="col-6">
-                    <div className="border rounded-3 p-4">
-                        <div className="d-flex justify-content-between gap-3">
-                            <h3 className="pb-2">All Students</h3>
-                            <p>{studentLists.length}</p>
-                        </div>
-                        <table className="table">
-                            <thead>
-                                <tr>
-                                <th scope="col">Name</th>
-                                <th scope="col">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {
-                                    studentLists.map((student)=>
-                                        <tr key={student.id}>
-                                            <td>
-                                                <div>{student.name}</div>
-                                            </td>
-                                            <td>
-                                                <div className="d-flex gap-2">
-                                                    <button onClick={()=>handleEdit(student)} className="btn btn-sm btn-secondary">Edit</button>
-                                                    <button onClick={()=>hangleRemove(student.id)} className="btn btn-sm btn-danger">Remove</button>
-                                                    <button onClick={()=>handleMakePresent(student)} className="btn btn-sm btn-primary">Make Present</button>
-                                                    <button onClick={()=>handleMakeAbsent(student)} className="btn btn-sm btn-danger">Make Absent</button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    )
-                                }
-                                
-                            </tbody>
-                        </table>
-                    </div>
-                </div>    
-                <div className="col-3">
-                    <div className="border rounded-3 p-4">
-                        <div className="d-flex justify-content-between gap-3">
-                            <h3 className="pb-2">Students Present</h3>
-                        </div>
-                        <table className="table">
-                            <thead>
-                                <tr>
-                                <th scope="col">Name</th>
-                                <th scope="col">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-
-                                {
-                                    studentLists.filter((item)=> item.ispresent === true).map((student)=>(
-                                        <tr key={student.id}>
-                                            <td>
-                                                <div className="d-flex gap-2 align-items-center">
-                                                    <div>{student.name}</div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div className="d-flex gap-2">
-                                                    <button onClick={()=>handleToggleList(student)} className="btn btn-sm btn-secondary">Accidentally Added</button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    ))
-                                }                                
-                            </tbody>
-                        </table>
-                    </div>
-                </div>    
-                <div className="col-3">
-                    <div className="border rounded-3 p-4">
-                        <h3 className="pb-2">Students Absent</h3>
-                        <table className="table">
-                            <thead>
-                                <tr>
-                                <th scope="col">Name</th>
-                                <th scope="col">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {
-                                    studentLists.filter((item)=> item.ispresent === false).map((student)=>(
-                                        <tr key={student.id}>
-                                            <td>
-                                                <div className="d-flex gap-2 align-items-center">
-                                                    <div>{student.name}</div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div className="d-flex gap-2">
-                                                    <button onClick={()=>handleToggleList(student)} className="btn btn-sm btn-secondary">Accidentally Added</button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    ))
-                                }
-                                {/* {
-                                    studentLists.map((student)=>
-                                        <tr key={student.id}>
-                                            <td>
-                                                <div className="d-flex gap-2 align-items-center">
-                                                    <div>{student.name}</div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div className="d-flex gap-2">
-                                                    <button className="btn btn-sm btn-secondary">Accidentally Added</button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    )
-                                } */}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>    
-            </div>                 
-
+    <>
+        <StudentForm 
+        handleSubmit={handleSubmit}
+        handleStudentName={handleStudentName}
+        studentName={studentName}
+        msg={msg}
+        editMode={editMode}
+        />
+        <div className="row">
+            <StudentsList
+            studentLists={studentLists}
+            handleEdit={handleEdit}
+            hangleRemove={hangleRemove}
+            handleMakeStatus={handleMakeStatus}
+            />
+            <StudentsStatus 
+            handleMakeStatus={handleMakeStatus} 
+            title='Present Student' 
+            studentStatus={presentStudentList}
+            />
+            <StudentsStatus 
+            handleMakeStatus={handleMakeStatus} 
+            title="Absent Student" 
+            studentStatus={absentStudentList}
+            />
         </div>
+    </>
     )
 }
 
