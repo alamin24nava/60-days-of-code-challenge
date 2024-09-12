@@ -8,8 +8,8 @@ function App() {
         <StudentForm/>
         <div className="row">
             <StudentsList/>
-            <StudentsStatus studentStatus={true} title="Present Students"/>
-            {/* <StudentsStatus studentStatus={false} title="Absent Students"/>  */}
+            <StudentsStatus studentStatus1={true} title="Present Students"/>
+            <StudentsStatus studentStatus={false} title="Absent Students"/> 
         </div>
     </>
     )

@@ -3,7 +3,6 @@ import { StudentContext } from "../contexs/Student";
 
 const StudentForm = ()=>{
     const {handleSubmit ,studentStates,handleStudentName} = useContext(StudentContext)
-    console.log(studentStates)
     return(
         <form onSubmit={handleSubmit} className="w-25 mx-auto my-5">
             <input onChange={handleStudentName} value={studentStates.studentName} type="text" className="form-control mb-2" placeholder="Enter Name"/>

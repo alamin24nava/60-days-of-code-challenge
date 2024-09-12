@@ -68,7 +68,7 @@ const studentReducer = (state = initState, action)=>{
                             return {...item, isPresent: false }
                         } else if(action.payload.status === 'remove'){
                             return {...item, isPresent: undefined}
-                        } else if(action.payload.status === 'undefined'){
+                        } else if(action.payload.status === undefined){
                             return {...item, isPresent: !item.isPresent}
                         }
                     }
@@ -91,8 +91,8 @@ const StudentProvider = (props)=>{
     const {children} = props
 
     const [studentStates, dispatch] = useReducer(studentReducer, initState)
-    // const presentStudentList = studentLists.filter(present => present.ispresent === true)
-    // const absentStudentList = studentLists.filter(present => present.ispresent === false)
+    const presentStudentList = studentStates.studentLists.filter(present => present.isPresent === true)
+    const absentStudentList = studentStates.studentLists.filter(present => present.isPresent === false)
     const handleStudentName = (e)=>{
         dispatch({type:'studentName', payload:e.target.value})
     }
@@ -113,8 +113,8 @@ const StudentProvider = (props)=>{
         dispatch,
         handleStudentName,
         handleSubmit,
-        // presentStudentList,
-        // absentStudentList
+        presentStudentList,
+        absentStudentList
     }
     return(
         <>
