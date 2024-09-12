@@ -91,8 +91,8 @@ const StudentProvider = (props)=>{
     const {children} = props
 
     const [studentStates, dispatch] = useReducer(studentReducer, initState)
-    const presentStudentList = studentLists.filter(present => present.ispresent === true)
-    const absentStudentList = studentLists.filter(present => present.ispresent === false)
+    // const presentStudentList = studentLists.filter(present => present.ispresent === true)
+    // const absentStudentList = studentLists.filter(present => present.ispresent === false)
     const handleStudentName = (e)=>{
         dispatch({type:'studentName', payload:e.target.value})
     }
@@ -105,7 +105,6 @@ const StudentProvider = (props)=>{
             dispatch({type:"msg", payload:''})
         }
         studentStates.editMode ? dispatch({type:"handleUpdate"}) : dispatch({type:"handleCreate"})
-        // console.log(handleCreate)
     }
 
 
@@ -114,8 +113,8 @@ const StudentProvider = (props)=>{
         dispatch,
         handleStudentName,
         handleSubmit,
-        presentStudentList,
-        absentStudentList
+        // presentStudentList,
+        // absentStudentList
     }
     return(
         <>
