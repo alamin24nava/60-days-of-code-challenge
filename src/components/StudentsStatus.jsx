@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { StudentContext } from "../contexs/Student";
 const StudentsStatus = (props)=>{
-    const{handleMakeStatus,absentStudentList,presentStudentList, studentStates, dispatch} = useContext(StudentContext);
+    const{absentStudentList,presentStudentList,dispatch} = useContext(StudentContext);
     const{title, studentStatus} =props
     return(
         <div className="col-3">
@@ -26,8 +26,8 @@ const StudentsStatus = (props)=>{
                                     </td>
                                     <td>
                                         <div className="d-flex gap-2">
-                                            <button onClick={()=>handleMakeStatus(student, 'undefined')} className="btn btn-sm btn-secondary">Accidentally Added</button>
-                                            <button onClick={()=>handleMakeStatus(student, 'remove')} className="btn btn-sm btn-danger">Remove</button>
+                                            <button onClick={()=>dispatch({type:'handleMakeStatus', payload:{student:student, status:undefined}})} className="btn btn-sm btn-secondary">Accidentally Added</button>
+                                            <button onClick={()=>dispatch({type:"handleMakeStatus", payload:{student:student, status:undefined}})} className="btn btn-sm btn-danger">Remove</button>
                                         </div>
                                     </td>
                                 </tr>

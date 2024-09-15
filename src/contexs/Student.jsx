@@ -1,4 +1,4 @@
-import { createContext, useReducer, useState } from "react";
+import { createContext, useReducer } from "react";
 
 export const StudentContext = createContext()
 const initState = {
@@ -66,7 +66,7 @@ const studentReducer = (state = initState, action)=>{
                             return {...item, isPresent: true }
                         } else if(action.payload.status === false){
                             return {...item, isPresent: false }
-                        } else if(action.payload.status === 'remove'){
+                        } else if(action.payload.status === undefined){
                             return {...item, isPresent: undefined}
                         } else if(action.payload.status === undefined){
                             return {...item, isPresent: !item.isPresent}
