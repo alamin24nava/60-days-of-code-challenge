@@ -27,7 +27,7 @@ const StudentsStatus = (props)=>{
                                     <td>
                                         <div className="d-flex gap-2">
                                             <button onClick={()=>dispatch({type:'handleMakeStatus', payload:{student:student, status:undefined}})} className="btn btn-sm btn-secondary">Accidentally Added</button>
-                                            <button onClick={()=>dispatch({type:'hangleRemove', payload:student.id})} className="btn btn-sm btn-danger">Remove</button>
+                                            <button onClick={()=>dispatch({type:'handleMakeStatus', payload:{student:student, status:undefined}})} className="btn btn-sm btn-danger">Remove</button>
                                         </div>
                                     </td>
                                 </tr>
