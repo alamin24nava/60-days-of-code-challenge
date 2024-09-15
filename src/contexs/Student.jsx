@@ -68,7 +68,7 @@ const studentReducer = (state = initState, action)=>{
                             return {...item, isPresent: false }
                         } else if(action.payload.status === undefined){
                             return {...item, isPresent: undefined}
-                        } else if(action.payload.status === undefined){
+                        } else if(action.payload.status === 'switch'){
                             return {...item, isPresent: !item.isPresent}
                         }
                     }
