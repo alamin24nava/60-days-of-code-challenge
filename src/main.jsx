@@ -1,11 +1,11 @@
-import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App'
-import StudentProvider from './contexs/Student'
+import { store } from './app/store'
+import { Provider } from 'react-redux'
 
 createRoot(document.getElementById('root')).render(
-    <StudentProvider>
+    <Provider store={store}>
         <App/>
-    </StudentProvider>
+    </Provider>
 
 )

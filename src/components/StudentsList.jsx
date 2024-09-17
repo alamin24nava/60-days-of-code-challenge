@@ -1,13 +1,23 @@
-import { useContext } from "react"
-import { StudentContext } from "../contexs/Student"
+import { useDispatch, useSelector } from "react-redux"
+import { deleteStudent,editStudent,manageStudent } from "../features/student_attendances/studentAttendancesSlice"
 const StudentsList = ()=>{
-    const{ studentStates, dispatch} = useContext(StudentContext)
+    const {allStudents} = useSelector((state)=>state.attendance)
+    const dispatch = useDispatch()
+    const handleDelete = (id)=>{
+        dispatch(deleteStudent(id))
+    }
+    const handleEdit =(student)=>{
+        dispatch(editStudent(student))
+    }
+    const handleStatus =(student)=>{
+        dispatch(manageStudent(student))
+    }
     return(
         <div className="col-6">
             <div className="border rounded-3 p-4">
                 <div className="d-flex justify-content-between gap-3">
                     <h3 className="pb-2">All Students</h3>
-                    <p>{studentStates.studentLists.length}</p>
+                    <p>{allStudents.length}</p>
                 </div>
                 <table className="table">
                     <thead>
@@ -18,17 +28,17 @@ const StudentsList = ()=>{
                     </thead>
                     <tbody>
                         {
-                            studentStates.studentLists.map((student)=>
+                            allStudents.map((student)=>
                                 <tr key={student.id}>
                                     <td>
                                         <div>{student.name}</div>
                                     </td>
                                     <td>
                                         <div className="d-flex gap-2">
-                                            <button onClick={()=>dispatch({type:'handleEdit', payload:student})} className="btn btn-sm btn-secondary">Edit</button>
-                                            <button onClick={()=>dispatch({type:'hangleRemove', payload:student.id})} className="btn btn-sm btn-danger">Remove</button>
-                                            <button onClick={()=>dispatch({type:'handleMakeStatus', payload: {student:student, status:true}})} className={`btn btn-sm btn-primary ${student.isPresent !== undefined && 'disabled'}`}>Make Present</button>
-                                            <button onClick={()=>dispatch({type:'handleMakeStatus', payload: {student:student, status:false}})} className={`btn btn-sm btn-danger ${student.isPresent !== undefined && 'disabled'}`}>Make Absent</button>
+                                            <button onClick={()=>handleEdit(student)} className="btn btn-sm btn-secondary">Edit</button>
+                                            <button onClick={()=>handleDelete(student.id)} className="btn btn-sm btn-danger">Remove</button>
+                                            <button onClick={()=>handleStatus({student:student, status:true})} className={`btn btn-sm btn-primary ${student.isPresent !== undefined && 'disabled'}`}>Make Present</button>
+                                            <button onClick={()=>handleStatus({student:student, status:false})} className={`btn btn-sm btn-danger ${student.isPresent !== undefined && 'disabled'}`}>Make Absent</button>
                                         </div>
                                     </td>
                                 </tr>
