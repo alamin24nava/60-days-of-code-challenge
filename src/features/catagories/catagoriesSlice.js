@@ -27,19 +27,19 @@ export const catagoriesSlice = createSlice({
         .addCase(fetchCatagories.pending, (state)=>{
             state.isError = false;
             state.isLoading = true;
+            console.log('pending');
         })
         .addCase(fetchCatagories.fulfilled, (state, action)=>{
             state.isError = false;
             state.isLoading = false;
             // state.catagories = action.payload
-            console.log('alamin', action.payload)
+            console.log('fulfilled', action.payload)
         })
         .addCase(fetchCatagories.rejected, (state, action)=>{
             state.isLoading = false;
             state.isError = true;
             state.error = action.error.message
             console.log('rejected');
-            
         })
     }
 })
