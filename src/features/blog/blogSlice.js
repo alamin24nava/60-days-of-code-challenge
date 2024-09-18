@@ -1,7 +1,12 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { getPosts } from './postsAPI'
 
 const initialState = {
     ctgName : '',
+    editAble:null,
+    isLoading: false,
+    isError: false,
+    error:null,
     catagories: [
         {
             name : "English",
@@ -92,21 +97,53 @@ const initialState = {
         },
     ]
 }
-
+export const fetchPosts = createAsyncThunk('posts/fetchPosts',
+    async () => {
+        const posts = await getPosts()
+        return posts
+    }
+)
 export const blogSlice = createSlice({
     name: 'blog',
     initialState,
     reducers: {
-        allctgs:(state, action)=>{
+        CATAGORIES:(state, action)=>{
           state.catagories.push(action.payload)
         },
         HANDLE_DELETE:(state, action)=>{
           state.catagories = state.catagories.filter((item)=> item.id !== action.payload)
+        },
+        HANDLE_EDIT:(state, action)=>{
+            console.log(action.payload)
+        },
+        HANDLE_UPDATE:(state, action)=>{
+            state.catagories = state.catagories.map((catagory)=>{
+                if(catagory.id === action.payload.id){
+                    return {...catagory, name:action.payload}
+                }
+                return catagory
+            })
         }
     },
+    extraReducers:(builder)=>{
+        builder.addCase(fetchPosts.pending, (state)=>{
+            state.isError = false;
+            state.isLoading = true
+        })
+            .addCase(fetchPosts.fulfilled, (state, action)=>{
+                state.isLoading = false;
+                state.posts = action.payload;
+
+            })
+            .addCase(fetchPosts.rejected, (state, action)=>{
+                state.isLoading = false;
+                state.isError = true;
+                state.error = action.payload
+            })
+    }
 })
 
 // Action creators are generated for each case reducer function
-export const {allctgs, HANDLE_DELETE } = blogSlice.actions
-
+export const {CATAGORIES, HANDLE_DELETE,HANDLE_EDIT } = blogSlice.actions
+export const useGetSelector = (state)=> state.blog
 export default blogSlice.reducer

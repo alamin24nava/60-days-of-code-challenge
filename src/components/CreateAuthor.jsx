@@ -19,7 +19,7 @@ const CreateAthour = ()=>{
                         <input type="text" className="form-control" id="inputPassword2" placeholder="Authour Name"/>
                     </div>
                     <div className="col-auto">
-                        <button type="submit" className="btn btn-primary">Create</button>
+                        <button type="submit" className="btn btn-primary">Create Author</button>
                     </div>
                 </form>
             </div>

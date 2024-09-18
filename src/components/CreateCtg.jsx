@@ -1,11 +1,10 @@
 import { useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import { allctgs } from "../features/blog/blogSlice"
+import { useDispatch } from "react-redux"
+import { CATAGORIES } from "../features/blog/blogSlice"
 const CreateCtg = ()=>{
     const [ctgName, setCtgName] = useState('')
-    const {catagories} = useSelector((state)=>state.blog)
+    // const {catagories} = useSelector((state)=>state.blog)
     const dispatch = useDispatch()
-    console.log(catagories)
     const handleCtgName = (e)=> setCtgName(e.target.value)
     const handleSubmit =(e)=>{
         e.preventDefault()
@@ -17,7 +16,7 @@ const CreateCtg = ()=>{
             name:ctgName
         }
         setCtgName('')
-        dispatch(allctgs(newCtg))
+        dispatch(CATAGORIES(newCtg))
     }
     return(
         <div className="col-6">
@@ -27,7 +26,7 @@ const CreateCtg = ()=>{
                         <input onChange={handleCtgName} value={ctgName} type="text" className="form-control" id="inputPassword2" placeholder="Category Name"/>
                     </div>
                     <div className="col-auto">
-                        <button type="submit" className="btn btn-primary">Create</button>
+                        <button type="submit" className="btn btn-primary">Create Category</button>
                     </div>
                 </form>
             </div>
