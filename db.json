@@ -1,8 +1,10 @@
 {
     "catagories":[
-        {"id":1, "title":"Football" },
-        {"id":2, "title":"Cricket" },
-        {"id":3, "title":"Voliball" }
+        {"id":1, "title":"Moving" },
+        {"id":2, "title":"Load & Unload" },
+        {"id":3, "title":"Long distance" },
+        {"id":4, "title":"Long Forward" }
+        
     ],
 
     "authors":[
