@@ -1,8 +1,7 @@
 import { useSelector } from "react-redux"
-import { fetchCatagories } from "../features/catagories/catagoriesSlice"
+import { useGetSelector } from "../features/catagories/catagoriesSlice"
 const Authors = ()=>{
-    const {catagories} = useSelector((state)=> state.catagories)
-    console.log(catagories)
+    const {catagories} = useSelector(useGetSelector)
     return(
         <>
         <div className="col-6">
