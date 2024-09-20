@@ -27,9 +27,8 @@ export const postApiCatagories = async(newCatagory)=>{
 //     return response.json()
 // }
 
-// export const deleteApiCatagories = async()=>{
-//     const response = await fetch(apiUrl, {
-
-//     })
+// export const deleteApiCatagories = async(catagoryId)=>{
+//     console.log(catagoryId)
+//     const response = await fetch(`apiUrl/${catagoryId}`)
 //     return response.json()
 // }

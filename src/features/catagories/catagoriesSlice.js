@@ -22,12 +22,13 @@ export const postCatagories = createAsyncThunk('catagories/postCatagories',
         return catagories
     }
 )
-
-// export const deleteCatagories = createAsyncThunk('catagories/deleteCatagories', async (catagoryId)=>{
-//     (await fetch('http://localhost:3000/catagories')).json()
-//     console.log(catagoryId)
-// })
-
+// deleteCatagories Thunk
+export const deleteCatagories = createAsyncThunk('catagories/deleteCatagories', 
+    async (catagoryId)=>{
+        const response = await fetch(`http://localhost:3000/catagories/${catagoryId}`)
+        return response.json()
+    }
+)
 
 
 export const catagoriesSlice = createSlice({
@@ -73,7 +74,8 @@ export const catagoriesSlice = createSlice({
         .addCase(deleteCatagories.fulfilled, (state, action)=>{
             state.isError = false;
             state.isLoading = false;
-            console.log(action.payload)
+            state.catagories = state.catagories.filter((item)=> item.id !== action.payload.id)
+            // state.catagories.push(action.payload)
         })
         .addCase(deleteCatagories.rejected, (state, action)=>{
             state.isLoading = false;
