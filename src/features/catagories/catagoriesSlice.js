@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { getApiCatagories, postApiCatagories,deleteApiCatagories, updateApiCatagories } from './catagoriesAPI'
+import { getApiCatagories, postApiCatagories,deleteApiCatagories,updateApiCatagories } from './catagoriesAPI'
 
 const initialState = {
     catagoryName:'',
@@ -93,13 +93,8 @@ export const catagoriesSlice = createSlice({
         .addCase(updateCatagories.fulfilled, (state, action)=>{
             state.isLoading = false;
             state.isError = false;
-            // console.log(action.payload);
-            
-            state.catagories.map((item)=> {
-                if(item.id === action.payload.id){
-                    console.log('Working...!')
-                }
-            })
+            const findIndex = state.catagories.findIndex(category => category.id === action.payload.id)
+            state.catagories[findIndex].title = action.payload.title
         })
     }
 })

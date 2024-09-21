@@ -1,16 +1,16 @@
 {
   "catagories": [
     {
-      "id": 1726900311825,
-      "title": "React And Redux Tutorial"
+      "id": 1726935404588,
+      "title": "Redux & REst AP sd"
     },
     {
-      "id": 1726900316097,
-      "title": "Html"
+      "id": 1726935406484,
+      "title": "Html css"
     },
     {
-      "id": 1726900327731,
-      "title": "php."
+      "id": 1726935415501,
+      "title": "Redux & REst"
     }
   ],
   "authors": [
@@ -33,6 +33,11 @@
       "id": 4,
       "name": "Abdullah",
       "category_id": 3
+    },
+    {
+      "id": 1726935451844,
+      "name": "Redux & REst AP sd",
+      "catagoryId": 0
     }
   ],
   "tags": [

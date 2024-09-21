@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-
+import { getApiAuthors } from './authorsAPI'
 const initialState = {
     authorName:'',
     authors:[],
@@ -9,10 +9,24 @@ const initialState = {
     isError:false,
     error:null,
 }
-
+// getAuthors Thunk
 export const getAuthors = createAsyncThunk('authors/getAuthors',
     async ()=>{
-        const response = await fetch('http://localhost:3000/authors')
+        const authors = await getApiAuthors()
+        return authors
+    }
+)
+
+// postAuthors Thunk
+export const postAuthors = createAsyncThunk('authors/getAuthors',
+    async (newAuthor)=>{
+        const response = await fetch('http://localhost:3000/authors',
+            {
+                method:"POST",
+                body:JSON.stringify(newAuthor),
+                headers:{"Content-type":"application/json"}
+            }
+        )
         return response.json()
     }
 )
@@ -22,7 +36,7 @@ export const AuthorsSlice = createSlice({
   initialState,
     extraReducers:(builder)=>{
         builder
-        // getCatagories
+        // getAuthors
         .addCase(getAuthors.pending, (state)=>{
             state.isError = false;
             state.isLoading = true;
@@ -37,6 +51,21 @@ export const AuthorsSlice = createSlice({
             state.isError = true;
             state.error = action.error.message
         })
+        // postAuthors
+        // .addCase(postAuthors.pending, (state)=>{
+        //     state.isError = false;
+        //     state.isLoading = true;
+        // })
+        // .addCase(postAuthors.fulfilled, (state, action)=>{
+        //     state.isError = false;
+        //     state.isLoading = false;
+        //     state.authors.push(action.payload)
+        // })
+        // .addCase(postAuthors.rejected, (state, action)=>{
+        //     state.isLoading = false;
+        //     state.isError = true;
+        //     state.error = action.error.message
+        // })
     }
 })
 

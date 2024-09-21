@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux"
 import { useGetSelector } from "../features/catagories/catagoriesSlice"
-import { useAuthorsSelector, getAuthors } from "../features/authors/authorsSlice"
+import { useAuthorsSelector, getAuthors, postAuthors } from "../features/authors/authorsSlice"
 import { useEffect, useState } from "react"
 const Authors = ()=>{
     const dispatch = useDispatch()
@@ -21,9 +21,7 @@ const Authors = ()=>{
     const handleSubmit = (e)=>{
         e.preventDefault()
         authorName.trim() === '' ? alert('Please Provide Author Name'):''
-        console.log(createAuthor());
-        dispatch(getAuthors('alamin'))
-        
+        dispatch(postAuthors(createAuthor()))   
     }
     useEffect(()=>{
         dispatch(getAuthors())

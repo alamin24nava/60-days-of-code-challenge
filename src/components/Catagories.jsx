@@ -25,17 +25,14 @@ const Catagories =()=>{
         setEditableCatagory(catagory)
     }
     
-    const updateCatagory = ()=>{
-        dispatch(updateCatagories(editableCatagory))
-        
-    }
+
 
     const handleSubmit = (e)=>{
         e.preventDefault()
         if(catagoryName.trim() === ''){
             return alert('Please Provider Catagory Name')
         }
-        editableCatagory == null ? dispatch(postCatagories(createCatagory())):updateCatagory()
+        editableCatagory == null ? dispatch(postCatagories(createCatagory())):dispatch(updateCatagories({id:editableCatagory.id, title:catagoryName}))
         
         setCatagoryName('')
         setEditableCatagory(null)
