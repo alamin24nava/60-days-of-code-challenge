@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { getApiAuthors } from './authorsAPI'
+import { getApiAuthors, postApiAuthors } from './authorsAPI'
 const initialState = {
     authorName:'',
     authors:[],
@@ -18,16 +18,10 @@ export const getAuthors = createAsyncThunk('authors/getAuthors',
 )
 
 // postAuthors Thunk
-export const postAuthors = createAsyncThunk('authors/getAuthors',
+export const postAuthors = createAsyncThunk('authors/postAuthors',
     async (newAuthor)=>{
-        const response = await fetch('http://localhost:3000/authors',
-            {
-                method:"POST",
-                body:JSON.stringify(newAuthor),
-                headers:{"Content-type":"application/json"}
-            }
-        )
-        return response.json()
+       const authors = await postApiAuthors(newAuthor)
+       return authors
     }
 )
 
@@ -52,24 +46,25 @@ export const AuthorsSlice = createSlice({
             state.error = action.error.message
         })
         // postAuthors
-        // .addCase(postAuthors.pending, (state)=>{
-        //     state.isError = false;
-        //     state.isLoading = true;
-        // })
-        // .addCase(postAuthors.fulfilled, (state, action)=>{
-        //     state.isError = false;
-        //     state.isLoading = false;
-        //     state.authors.push(action.payload)
-        // })
-        // .addCase(postAuthors.rejected, (state, action)=>{
-        //     state.isLoading = false;
-        //     state.isError = true;
-        //     state.error = action.error.message
-        // })
+        .addCase(postAuthors.pending, (state)=>{
+            state.isError = false;
+            state.isLoading = true;
+        })
+        .addCase(postAuthors.fulfilled, (state, action)=>{
+            state.isError = false;
+            state.isLoading = false;
+            state.authors.push(action.payload)
+        })
+        .addCase(postAuthors.rejected, (state, action)=>{
+            state.isLoading = false;
+            state.isError = true;
+            state.error = action.error.message
+        })
     }
 })
 
 // Action creators are generated for each case reducer function
-export const { reducerCreateAuthor, decrement, incrementByAmount } = AuthorsSlice.actions
+export const { } = AuthorsSlice.actions
 export const useAuthorsSelector = (state)=> state.authors
+
 export default AuthorsSlice.reducer

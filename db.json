@@ -1,43 +1,23 @@
 {
   "catagories": [
     {
-      "id": 1726935404588,
-      "title": "Redux & REst AP sd"
+      "id": "1726947857680",
+      "title": "Html"
     },
     {
-      "id": 1726935406484,
-      "title": "Html css"
+      "id": "1726947860976",
+      "title": "React"
     },
     {
-      "id": 1726935415501,
-      "title": "Redux & REst"
+      "id": "1726947866560",
+      "title": "Redux"
     }
   ],
   "authors": [
     {
-      "id": 1,
-      "name": "lemon",
-      "category_id": 1
-    },
-    {
-      "id": 2,
-      "name": "Sharif",
-      "category_id": 2
-    },
-    {
-      "id": 3,
-      "name": "Alamin",
-      "category_id": 2
-    },
-    {
-      "id": 4,
-      "name": "Abdullah",
-      "category_id": 3
-    },
-    {
-      "id": 1726935451844,
-      "name": "Redux & REst AP sd",
-      "catagoryId": 0
+      "id": 1726948448444,
+      "name": "alamin",
+      "catagoryId": ""
     }
   ],
   "tags": [
