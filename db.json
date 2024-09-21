@@ -1,24 +1,16 @@
 {
   "catagories": [
     {
-      "id": 1,
-      "title": "sdasd"
+      "id": 1726900311825,
+      "title": "React And Redux Tutorial"
     },
     {
-      "id": 2,
-      "title": "ASDA"
+      "id": 1726900316097,
+      "title": "Html"
     },
     {
-      "id": 1726838103967,
-      "title": "alaminm"
-    },
-    {
-      "id": 1726838153182,
-      "title": "asdas"
-    },
-    {
-      "id": 1726838590356,
-      "title": "ASDA"
+      "id": 1726900327731,
+      "title": "php."
     }
   ],
   "authors": [
@@ -36,6 +28,11 @@
       "id": 3,
       "name": "Alamin",
       "category_id": 2
+    },
+    {
+      "id": 4,
+      "name": "Abdullah",
+      "category_id": 3
     }
   ],
   "tags": [

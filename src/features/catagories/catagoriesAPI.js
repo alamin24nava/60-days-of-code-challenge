@@ -16,19 +16,18 @@ export const postApiCatagories = async(newCatagory)=>{
     return response.json()
 }
 
-// export const updateApiCatagories = async(newCatagory)=>{
-//     const response = await fetch(apiUrl, {
-//         method:"POST",
-//         body: JSON.stringify(newCatagory),
-//         headers:{
-//             "Content-type":"application/json"
-//         }
-//     })
-//     return response.json()
-// }
-
-// export const deleteApiCatagories = async(catagoryId)=>{
-//     console.log(catagoryId)
-//     const response = await fetch(`apiUrl/${catagoryId}`)
-//     return response.json()
-// }
+export const updateApiCatagories = async(catagory)=>{
+    const response = await fetch(`${apiUrl}/${catagory.id}`, {
+        // method:"PUT",
+        // body: JSON.stringify(newCatagory),
+        // headers:{
+        //     "Content-type":"application/json"
+        // }
+    })
+    return response.json()
+}
+// deleteApiCatagories
+export const deleteApiCatagories = async(catagoryId)=>{
+    const response = await fetch(`${apiUrl}/${catagoryId}`, {method:"DELETE"})
+    return response
+}

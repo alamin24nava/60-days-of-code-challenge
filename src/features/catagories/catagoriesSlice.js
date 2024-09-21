@@ -1,9 +1,10 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { getApiCatagories, postApiCatagories } from './catagoriesAPI'
+import { getApiCatagories, postApiCatagories,deleteApiCatagories, updateApiCatagories } from './catagoriesAPI'
 
 const initialState = {
     catagoryName:'',
     catagories:[],
+    editableCatagory:null,
     isLoading:false,
     isError:false,
     error:null,
@@ -25,11 +26,17 @@ export const postCatagories = createAsyncThunk('catagories/postCatagories',
 // deleteCatagories Thunk
 export const deleteCatagories = createAsyncThunk('catagories/deleteCatagories', 
     async (catagoryId)=>{
-        const response = await fetch(`http://localhost:3000/catagories/${catagoryId}`)
-        return response.json()
+        await deleteApiCatagories(catagoryId)
+        return catagoryId
     }
 )
-
+// updateCatagories Thunk
+export const updateCatagories = createAsyncThunk('catagories/updateCatagories',
+    async (catagory)=>{
+        const catagories = await updateApiCatagories(catagory)
+        return catagories
+    }
+)
 
 export const catagoriesSlice = createSlice({
     name: 'catagories',
@@ -74,7 +81,7 @@ export const catagoriesSlice = createSlice({
         .addCase(deleteCatagories.fulfilled, (state, action)=>{
             state.isError = false;
             state.isLoading = false;
-            state.catagories = state.catagories.filter((item)=> item.id !== action.payload.id)
+            state.catagories = state.catagories.filter((item)=> item.id !== action.payload)
             // state.catagories.push(action.payload)
         })
         .addCase(deleteCatagories.rejected, (state, action)=>{
@@ -82,10 +89,20 @@ export const catagoriesSlice = createSlice({
             state.isError = true;
             state.error = action.error.message
         })
+        // updateCatagories
+        .addCase(updateCatagories.fulfilled, (state, action)=>{
+            state.isLoading = false;
+            state.isError = false;
+            // console.log(action.payload);
+            
+            state.catagories.map((item)=> {
+                if(item.id === action.payload.id){
+                    console.log('Working...!')
+                }
+            })
+        })
     }
 })
-
-
 // export const {CATAGORIES} = catagoriesSlice.actions
 export const useGetSelector = (state)=> state.catagories
 export default catagoriesSlice.reducer

@@ -1,29 +1,45 @@
 import { useDispatch, useSelector } from "react-redux"
 import { useEffect, useState } from "react"
-import { deleteCatagories, getCatagories, postCatagories, useGetSelector } from "../features/catagories/catagoriesSlice"
+import { deleteCatagories, getCatagories, postCatagories, useGetSelector,updateCatagories } from "../features/catagories/catagoriesSlice"
 import Placeholder from "./Placeholder"
 import DataNotFound from "./DataNotFound"
 const Catagories =()=>{
     const dispatch = useDispatch()
     const [catagoryName, setCatagoryName] = useState('')
+    const [editableCatagory, setEditableCatagory] = useState(null)
     const handleCatagoryName = (e)=>{
         setCatagoryName(e.target.value)
     }
     const handleDelete =(catagoryId)=>{
         dispatch(deleteCatagories(catagoryId))
     }
+    const createCatagory = ()=>{
+        const newCatagory = {
+            id: Date.now(),
+            title:catagoryName
+        }
+        return newCatagory
+    }
+    const handleEdit = (catagory)=>{
+        setCatagoryName(catagory.title)
+        setEditableCatagory(catagory)
+    }
+    
+    const updateCatagory = ()=>{
+        dispatch(updateCatagories(editableCatagory))
+        
+    }
+
     const handleSubmit = (e)=>{
         e.preventDefault()
         if(catagoryName.trim() === ''){
             return alert('Please Provider Catagory Name')
         }
-        const newCatagory = {
-            id: Date.now(),
-            title:catagoryName
-        }
-        dispatch(postCatagories(newCatagory))
+        editableCatagory == null ? dispatch(postCatagories(createCatagory())):updateCatagory()
+        
         setCatagoryName('')
-    }
+        setEditableCatagory(null)
+    }    
     const {catagories, isLoading, isError} = useSelector(useGetSelector)
     useEffect(()=>{
         dispatch(getCatagories())
@@ -38,7 +54,7 @@ const Catagories =()=>{
                             <input value={catagoryName} onChange={handleCatagoryName} type="text" className="form-control" id="inputPassword2" placeholder="Category Name"/>
                         </div>
                         <div className="col-auto">
-                            <button type="submit" className="btn btn-primary">Create Category</button>
+                            <button type="submit" className="btn btn-primary">{editableCatagory == null ? 'Create Category':'Update Category'}</button>
                         </div>
                     </form>
                 </div>
@@ -66,7 +82,7 @@ const Catagories =()=>{
                                                 <td>{catagory.title}</td>
                                                 <td>
                                                     <div className="d-flex gap-2 justify-content-end">
-                                                        <button type="button" className="btn btn-secondary">Edit</button>
+                                                        <button type="button" onClick={()=>handleEdit(catagory)} className="btn btn-secondary">Edit</button>
                                                         <button onClick={()=>handleDelete(catagory.id)} type="button" className="btn btn-danger">Delete</button>
                                                     </div>
                                                 </td>
