@@ -82,7 +82,6 @@ export const catagoriesSlice = createSlice({
             state.isError = false;
             state.isLoading = false;
             state.catagories = state.catagories.filter((item)=> item.id !== action.payload)
-            // state.catagories.push(action.payload)
         })
         .addCase(deleteCatagories.rejected, (state, action)=>{
             state.isLoading = false;

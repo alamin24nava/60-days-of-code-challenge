@@ -58,7 +58,7 @@ const Catagories =()=>{
             </div>
             <div className="col-6">
                 <div className="border rounded-3 p-3">
-                    <h3>Category Lists</h3>
+                    <h3 className="text-6xl">Category Lists</h3>
                     {
                         isLoading && !isError ? 
                         <Placeholder/>:

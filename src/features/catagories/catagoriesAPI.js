@@ -17,6 +17,7 @@ export const postApiCatagories = async(newCatagory)=>{
 }
 
 export const updateApiCatagories = async(catagory)=>{
+    console.log(catagory)
     const response = await fetch(`http://localhost:3000/catagories/${catagory.id}`,
         {
             method:"PUT",

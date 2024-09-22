@@ -1,58 +1,36 @@
 {
   "catagories": [
     {
-      "id": 1727005289858,
+      "id": 1727034092098,
       "title": "Html"
     },
     {
-      "id": 1727005295194,
-      "title": "Wordpress"
+      "id": 1727034095401,
+      "title": "React"
     },
     {
-      "id": 1727005300621,
-      "title": "React Js"
+      "id": 1727035998671,
+      "title": "Redux"
     }
   ],
   "authors": [
     {
-      "id": 1727005312166,
-      "name": "Sumit saha",
-      "catagoryId": "1727005300621"
+      "id": 1727036886932,
+      "name": "Setu Bhai",
+      "catagoryId": 2
     },
     {
-      "id": 1727005323392,
-      "name": "Ali",
-      "catagoryId": "1727005295194"
+      "id": 1727036892330,
+      "name": "Hasin Heyder",
+      "catagoryId": 1
     },
     {
-      "id": 1727005342479,
-      "name": "hasin hayder",
-      "catagoryId": "1727005300621"
-    },
-    {
-      "id": 1727005347833,
-      "name": "setu",
-      "catagoryId": "1727005289858"
+      "id": 1727036900362,
+      "name": "Setu Bhai",
+      "catagoryId": 1
     }
   ],
-  "tags": [
-    {
-      "id": 1,
-      "name": "ball"
-    },
-    {
-      "id": 2,
-      "name": "bat"
-    },
-    {
-      "id": 3,
-      "name": "wk"
-    },
-    {
-      "id": 4,
-      "name": "pitch"
-    }
-  ],
+  "tags": [],
   "posts": [
     {
       "id": 1,

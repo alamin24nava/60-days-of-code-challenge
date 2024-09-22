@@ -1,4 +1,3 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css'
 import CreateCtg from './components/CreateCtg';
 import CtgLists from './components/CtgLists';

@@ -8,6 +8,7 @@ const initialState = {
     isLoading:false,
     isError:false,
     error:null,
+    authorsByCategories:[]
 }
 // getAuthors Thunk
 export const getAuthors = createAsyncThunk('authors/getAuthors',
@@ -22,6 +23,13 @@ export const postAuthors = createAsyncThunk('authors/postAuthors',
     async (newAuthor)=>{
        const authors = await postApiAuthors(newAuthor)
        return authors
+    }
+)
+
+export const dependentAuthorsByCategory = createAsyncThunk('authors/dependentAuthorsByCategory',
+    async(id)=>{
+        const response = await fetch(`http://localhost:3000/authors?catagoryId=${id}`)
+        return response.json()
     }
 )
 
@@ -60,6 +68,15 @@ export const AuthorsSlice = createSlice({
             state.isError = true;
             state.error = action.error.message
         })
+
+
+        // dependentAuthorsByCategory
+        .addCase(dependentAuthorsByCategory.fulfilled, (state, action)=>{
+            state.isError = false;
+            state.isLoading = false;
+            state.authorsByCategories = action.payload
+        })
+         
     }
 })
 

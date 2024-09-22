@@ -1,8 +1,14 @@
+import Posts from "../components/Posts"
+import Tags from "../components/Tags"
 const Blogs = ()=>{
+    const handleSubmit = (e)=>{
+        e.preventDefault()
+    }
     return(
-        <>
-        <h3>Blog</h3>
-        </>
+        <div className="row">
+            <Posts/>
+            <Tags/>
+        </div>
     )
 }
 export default Blogs
