@@ -1,23 +1,38 @@
 {
   "catagories": [
     {
-      "id": "1726947857680",
+      "id": 1727005289858,
       "title": "Html"
     },
     {
-      "id": "1726947860976",
-      "title": "React"
+      "id": 1727005295194,
+      "title": "Wordpress"
     },
     {
-      "id": "1726947866560",
-      "title": "Redux"
+      "id": 1727005300621,
+      "title": "React Js"
     }
   ],
   "authors": [
     {
-      "id": 1726948448444,
-      "name": "alamin",
-      "catagoryId": ""
+      "id": 1727005312166,
+      "name": "Sumit saha",
+      "catagoryId": "1727005300621"
+    },
+    {
+      "id": 1727005323392,
+      "name": "Ali",
+      "catagoryId": "1727005295194"
+    },
+    {
+      "id": 1727005342479,
+      "name": "hasin hayder",
+      "catagoryId": "1727005300621"
+    },
+    {
+      "id": 1727005347833,
+      "name": "setu",
+      "catagoryId": "1727005289858"
     }
   ],
   "tags": [

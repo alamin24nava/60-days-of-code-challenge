@@ -13,19 +13,26 @@ const Authors = ()=>{
     const handleAuthorName = (e)=>{
         setAuthorName(e.target.value);
     }
-    const createAuthor =()=>{
+    // const createAuthor =()=>{
+    //     const newAuthor = {
+    //         id: Date.now(),
+    //         name: authorName,
+    //         catagoryId: selectCatagory,
+    //     }
+    //     return newAuthor
+    // }
+    const handleSubmit = (e)=>{
+        e.preventDefault()
+        // console.log(createAuthor())
         const newAuthor = {
             id: Date.now(),
             name: authorName,
             catagoryId: selectCatagory,
         }
-        return newAuthor
-    }
-    const handleSubmit = (e)=>{
-        e.preventDefault()
         authorName.trim() === '' ? alert('Please Provide Author Name'):''
-        dispatch(postAuthors(createAuthor()))   
+        dispatch(postAuthors(newAuthor))   
         setAuthorName('')
+        setSelectCatagory('')
     }
     const handleSelect = (e)=>{
         setSelectCatagory(e.target.value)
@@ -40,6 +47,7 @@ const Authors = ()=>{
                 <form onSubmit={handleSubmit} className="row g-3">
                     <div className="col-auto">
                         <select onChange={handleSelect} value={selectCatagory} className="form-select">
+                        <option>-Selete-</option>
                             {
                                 catagories.map((item)=>
                                     <option key={item.id} value={item.id}>{item.title}</option>
@@ -71,12 +79,11 @@ const Authors = ()=>{
 
                         {
                             authors.map((item)=>{
-                                const bas = catagories?.find((findId)=> findId.id == item.catagoryId)
-                                console.log(item.catagoryId)
+                                const authorsByCatagory = catagories?.find((findId)=> findId.id == item.catagoryId)
                                 return(
                                     <tr key={item.id}>
-                                        <td>{item.catagoryId}</td>
-                                        <td>nnnn</td>
+                                        <td>{authorsByCatagory.id}</td>
+                                        <td>{authorsByCatagory.title}</td>
                                         <td>
                                             <div className="d-flex gap-2 justify-content-end">
                                                 <span>{item.name}</span>
