@@ -28,7 +28,6 @@ const Authors = ()=>{
             return
         }
         const newAuthor = {
-            id: Date.now(),
             name: authorName,
             catagoryId: Number(selectCatagory),
         }
@@ -44,38 +43,34 @@ const Authors = ()=>{
         dispatch(getAuthors())
     },[dispatch])
     return(
-        <>
-        <div className="col-6">
-             <div className="border rounded-3 p-3">
+        <div className="flex gap-4">
+            <div className="w-full border h-100 rounded-md p-3">
                 <form onSubmit={handleSubmit} className="row g-3">
-                    <div className="max-w-sm p-6 bg-white rounded shadow-md">
-                        <div className="col-auto">
-                            <select onChange={handleSelect} value={selectCatagory} className="form-select">
-                            <option>-Selete-</option>
-                                {
-                                    catagories.map((item)=>
-                                        <option key={item.id} value={item.id}>{item.title}</option>
-                                    )
-                                }
-                            </select>
-                        </div>
+                    <div className="col-auto">
+                        <select onChange={handleSelect} value={selectCatagory} className="select select-bordered w-full max-w-xs">
+                            <option disabled selected>-- Select Category --</option>
+                            {
+                                catagories.map((item)=>
+                                    <option key={item.id} value={item.id}>{item.title}</option>
+                                )
+                            }
+                        </select>
                     </div>
                     <div className="col-auto">
-                        <input onChange={handleAuthorName} value={authorName} type="text" className="form-control" id="inputPassword2" placeholder="Authour Name"/>
+                    <input type="text" value={authorName} onChange={handleAuthorName} placeholder="Authour Name" className="input input-bordered w-full max-w-xs" />
+                        {/* <input onChange={handleAuthorName} value={authorName} type="text" className="form-control" id="inputPassword2" placeholder="Authour Name"/> */}
                     </div>
                     <div className="col-auto">
                         <button type="submit" className="btn btn-primary">Create Author</button>
                     </div>
                 </form>
             </div>
-        </div>
-        <div className="col-6">
-            <div className="border rounded-3 p-3">
+            <div className="w-full border h-100 rounded-md p-3">
                 <h4>Author Lists</h4>
                 <table className="table">
                     <thead>
                         <tr>
-                            <th scope="col" className="text-6xl">Category ID</th>
+                            <th scope="col">Category ID</th>
                             <th scope="col">Category Name</th>
                             <th className="text-end">Author Name</th>
                         </tr>
@@ -92,7 +87,7 @@ const Authors = ()=>{
                                         <td>{authorsByCatagory && authorsByCatagory.id}</td>
                                         <td>{authorsByCatagory && authorsByCatagory.title}</td>
                                         <td>
-                                            <div className="d-flex gap-2 justify-content-end">
+                                            <div className="flex gap-2 justify-end">
                                                 <span>{item.name}</span>
                                             </div>
                                         </td>
@@ -104,7 +99,6 @@ const Authors = ()=>{
                 </table>
             </div>
         </div>
-        </>
     )
 }
 export default Authors

@@ -6,6 +6,7 @@ import AuthorLists from './components/AuthorLists';
 function App() {
     return (
         <>  
+        <h2 className='text-xl font-semibold text-red-500'>Hello world</h2>
             <div className="row g-4">
                 <CreateCtg/>
                 <CtgLists/>

@@ -1,36 +1,40 @@
 {
   "catagories": [
     {
-      "id": 1727034092098,
-      "title": "Html"
+      "title": "html ",
+      "id": 1
     },
     {
-      "id": 1727034095401,
-      "title": "React"
+      "title": "css",
+      "id": 2
     },
     {
-      "id": 1727035998671,
-      "title": "Redux"
+      "title": "redux",
+      "id": 3
     }
   ],
   "authors": [
     {
-      "id": 1727036886932,
-      "name": "Setu Bhai",
-      "catagoryId": 2
+      "name": "alamin",
+      "catagoryId": 2,
+      "id": 1
     },
     {
-      "id": 1727036892330,
-      "name": "Hasin Heyder",
-      "catagoryId": 1
-    },
-    {
-      "id": 1727036900362,
-      "name": "Setu Bhai",
-      "catagoryId": 1
+      "name": "sumit",
+      "catagoryId": 3,
+      "id": 2
     }
   ],
-  "tags": [],
+  "tags": [
+    {
+      "name": "css",
+      "id": 2
+    },
+    {
+      "name": "html",
+      "id": 3
+    }
+  ],
   "posts": [
     {
       "id": 1,

@@ -18,7 +18,6 @@ const Tags =()=>{
             return alert('Please Provide Tag Name')
         }
         const newTag = {
-            id: Date.now(),
             name:tagName
         }
         editableTag == null? dispatch(postTags(newTag)):dispatch(updateTags({id:editableTag.id, name:tagName}))

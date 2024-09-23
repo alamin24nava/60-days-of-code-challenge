@@ -1,25 +1,30 @@
 import { useDispatch, useSelector } from "react-redux"
-import { useGetSelector } from "../features/catagories/catagoriesSlice"
+import { useGetSelector, getCatagories } from "../features/catagories/catagoriesSlice"
 import { useAuthorsSelector, dependentAuthorsByCategory } from "../features/authors/authorsSlice"
-import { useState } from "react"
-const Posts = ()=>{
+import { getTags } from "../features/tags/tagsSlice"
+import { useEffect, useState } from "react"
+const CreatePosts = ()=>{
     const {catagories} = useSelector(useGetSelector)
-    const {authors, authorsByCategories} = useSelector(useAuthorsSelector)
-    const [selectCatagoryName, setSelectCatagoryName] = useState(null)
-    const [selectAuthorName, setSelectAuthorName] = useState(null)
+    const {authorsByCategories} = useSelector(useAuthorsSelector)
+    const [selectCatagory, setSelectCatagory] = useState(null)
+    const [selectAuthor, setSelectAuthor] = useState(null)
     const dispatch = useDispatch()
     const handleSelectCatagories = (e)=>{
-        setSelectCatagoryName(e.target.value)
-        dispatch(dependentAuthorsByCategory(1))
+        setSelectCatagory(e.target.value)
+        dispatch(dependentAuthorsByCategory(e.target.value))
     }
     const handleSelectAuthors = (e)=>{
-        setSelectAuthorName(e.target.value)
+        setSelectAuthor(e.target.value)
     }
     const handleSubmit = (e)=>{
         e.preventDefault()
-        
-
     }
+    useEffect(()=>{
+        dispatch(getTags())
+        dispatch(getCatagories())
+    },[dispatch])
+    console.log("selectCatagory",selectCatagory)
+    console.log("selectAuthor", selectAuthor)
     return(
         <div className="col-6">
             <div className="border rounded-3 p-3">
@@ -30,19 +35,20 @@ const Posts = ()=>{
                             {
                                 catagories &&
                                 catagories.map((item)=>
-                                    <option key={item.id} id={item.id} value={item.title}>{item.title}</option>                                    
+                                    <option key={item.id} id={item.id} value={item.id}>{item.title}</option>                                    
                                 )
                             }
                         </select>
                     </div>
                     
                     <div className="col-12">
+                        <h3 className="text-error">asdadsas aslkdmnajdb</h3>
                         <select onChange={handleSelectAuthors} className="form-select">
                             <option>-- Select Author --</option>
                             {
                                 authorsByCategories &&
                                 authorsByCategories.map((item)=>
-                                    <option key={item.id} value={item.name}>{item.name}</option>                                    
+                                    <option key={item.id} value={item.id}>{item.name}</option>                                    
                                 )
                             }
                         </select>
@@ -61,4 +67,4 @@ const Posts = ()=>{
         </div>
     )
 }
-export default Posts
+export default CreatePosts

@@ -1,0 +1,107 @@
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import {postApiPosts, deleteApiPosts, getApiPosts, updateApiPosts} from '../posts/postsAPI'
+const initialState = {
+    catagoryName:'',
+    authorName:'',
+    postTitle:'',
+    postDesc:'',
+    tags:[],
+    editableTag:null,
+    isLoading:false,
+    isError:false,
+    error:null
+}
+export const getPosts = createAsyncThunk('posts/getPosts',
+    async()=>{
+        const posts = await getApiPosts()
+        return posts
+    }
+)
+
+export const postPosts = createAsyncThunk('posts/postPosts',
+    async(newPost)=>{
+        const posts = await postApiPosts(newPost)
+        return posts
+    }
+)
+export const updatePosts = createAsyncThunk('posts/updatePosts',
+    async(post)=>{
+        const posts = await updateApiPosts(post)
+        return posts
+    }
+)
+export const deletePosts = createAsyncThunk('posts/deletePosts',
+    async(postId)=>{
+        await deleteApiPosts(postId)
+        return postId
+    }
+)
+
+export const postsSlice = createSlice({
+    name: 'posts',
+    initialState,
+    // extraReducers:(builder)=>{
+    //     builder
+    //     // getTags
+    //     .addCase(getTags.pending, (state)=>{
+    //         state.isError = false;
+    //         state.isLoading = true;
+    //     })
+    //     .addCase(getTags.fulfilled, (state, action)=>{
+    //         state.isError = false;
+    //         state.isLoading = false;
+    //         state.tags = action.payload
+    //         console.log(action.payload)
+    //     })
+    //     .addCase(getTags.rejected, (state, action)=>{
+    //         state.isLoading = false;
+    //         state.isError = true;
+    //         state.error = action.error.message
+    //     })
+
+    //     // postTags
+    //     .addCase(postTags.pending, (state)=>{
+    //         state.isError = false;
+    //         state.isLoading = true;
+    //     })
+    //     .addCase(postTags.fulfilled, (state, action)=>{
+    //         state.isError = false;
+    //         state.isLoading = false;
+    //         state.tags.push(action.payload)
+    //         // console.log(state.isError)
+    //     })
+    //     .addCase(postTags.rejected, (state, action)=>{
+    //         state.isLoading = false;
+    //         state.isError = true;
+    //         state.error = action.error.message
+    //     })
+    //     // deleteTags
+    //     .addCase(deleteTags.pending, (state)=>{
+    //         state.isError = false;
+    //         state.isLoading = true;
+    //     })
+    //     .addCase(deleteTags.fulfilled, (state, action)=>{
+    //         state.isError = false;
+    //         state.isLoading = false;
+    //         state.tags = state.tags.filter((item)=> item.id !== action.payload)
+    //     })
+    //     .addCase(deleteTags.rejected, (state, action)=>{
+    //         state.isLoading = false;
+    //         state.isError = true;
+    //         state.error = action.error.message
+    //     })
+
+
+    //     .addCase(updateTags.fulfilled, (state, action)=>{
+    //         state.isLoading = false;
+    //         state.isError = false;
+    //         console.log(action.payload)
+    //         const findIndex = state.tags.findIndex(tag => tag.id === action.payload.id)
+    //         state.tags[findIndex].name = action.payload.name
+    //     })
+    // }
+})
+
+// Action creators are generated for each case reducer function
+export const useGetSelector = (state)=> state.posts
+export default postsSlice.reducer
