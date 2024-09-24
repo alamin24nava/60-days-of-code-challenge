@@ -1,34 +1,60 @@
 {
   "catagories": [
     {
-      "title": "css",
+      "title": "Frontend",
+      "id": 1
+    },
+    {
+      "title": "Backend",
       "id": 2
     },
     {
-      "title": "redux",
+      "title": "Full-stack",
       "id": 3
     }
   ],
   "authors": [
     {
-      "name": "alamin",
-      "catagoryId": 2,
+      "name": "SR Setu",
+      "catagoryId": 1,
       "id": 1
     },
     {
-      "name": "sumit",
-      "catagoryId": 3,
+      "name": "Hasin Hayder",
+      "catagoryId": 2,
       "id": 2
+    },
+    {
+      "name": "Sumit Saha",
+      "catagoryId": 3,
+      "id": 3
+    },
+    {
+      "name": "Sumit Saha",
+      "catagoryId": 2,
+      "id": 4
     }
   ],
   "tags": [
     {
-      "name": "css",
-      "id": 2
+      "id": 2,
+      "name": "css"
     },
     {
       "name": "html",
       "id": 3
+    },
+    {
+      "name": "php",
+      "id": 4
+    },
+    {
+      "name": "js",
+      "id": 5
+    },
+    {
+      "id": 6,
+      "name": "bt "
     }
   ],
   "posts": [
@@ -48,17 +74,12 @@
     },
     {
       "catagoryId": "2",
-      "authorId": "1",
-      "postTitle": "tttt",
-      "postDesc": "dessss",
+      "authorId": "4",
+      "postTitle": "asda",
+      "postDesc": "asdasd",
+      "postTags": [],
+      "dateTime": "2024-09-24T11:53:56.290Z",
       "id": 2
-    },
-    {
-      "catagoryId": "2",
-      "authorId": "1",
-      "postTitle": "ttt",
-      "postDesc": "rtrtr",
-      "id": 3
     }
   ],
   "comments": [

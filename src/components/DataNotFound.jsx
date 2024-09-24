@@ -1,7 +1,7 @@
 const DataNotFound = ()=>{
     return(
         <div>
-            <h4 className="text-danger">Data Not Found</h4>
+            <h4 className="text-error">Data Not Found</h4>
         </div>
     )
 }

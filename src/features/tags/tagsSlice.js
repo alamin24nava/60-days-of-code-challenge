@@ -99,5 +99,5 @@ export const tagsSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const useGetSelector = (state)=> state.tags
+export const useTagsSelector = (state)=> state.tags
 export default tagsSlice.reducer

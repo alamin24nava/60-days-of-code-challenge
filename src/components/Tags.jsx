@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from "react-redux"
-import { getTags,postTags,deleteTags,updateTags, useGetSelector } from "../features/tags/tagsSlice"
+import { getTags,postTags,deleteTags,updateTags, useTagsSelector } from "../features/tags/tagsSlice"
 import { useEffect, useState } from "react"
 const Tags =()=>{
     const dispatch = useDispatch()
-    const {tags} = useSelector(useGetSelector)
+    const {tags} = useSelector(useTagsSelector)
     const [tagName, setTagName] = useState('')
     const [editableTag, setEditableTag] = useState(null)
     useEffect(()=>{
@@ -22,6 +22,7 @@ const Tags =()=>{
         }
         editableTag == null? dispatch(postTags(newTag)):dispatch(updateTags({id:editableTag.id, name:tagName}))
         setTagName('')
+        setEditableTag(null)
     }
     const handleEdit = (item)=>{
         setEditableTag(item)
