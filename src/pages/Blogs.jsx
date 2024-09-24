@@ -5,7 +5,7 @@ const Blogs = ()=>{
         e.preventDefault()
     }
     return(
-        <div className="row">
+        <div className="flex gap-6">
             <CreatePosts/>
             <Tags/>
         </div>

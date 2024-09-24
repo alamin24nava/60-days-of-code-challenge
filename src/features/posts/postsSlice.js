@@ -40,41 +40,43 @@ export const deletePosts = createAsyncThunk('posts/deletePosts',
 export const postsSlice = createSlice({
     name: 'posts',
     initialState,
-    // extraReducers:(builder)=>{
-    //     builder
-    //     // getTags
-    //     .addCase(getTags.pending, (state)=>{
-    //         state.isError = false;
-    //         state.isLoading = true;
-    //     })
-    //     .addCase(getTags.fulfilled, (state, action)=>{
-    //         state.isError = false;
-    //         state.isLoading = false;
-    //         state.tags = action.payload
-    //         console.log(action.payload)
-    //     })
-    //     .addCase(getTags.rejected, (state, action)=>{
-    //         state.isLoading = false;
-    //         state.isError = true;
-    //         state.error = action.error.message
-    //     })
+    extraReducers:(builder)=>{
+        builder
+        // getPosts
+        .addCase(getPosts.pending, (state)=>{
+            state.isError = false;
+            state.isLoading = true;
+        })
+        .addCase(getPosts.fulfilled, (state, action)=>{
+            state.isError = false;
+            state.isLoading = false;
+            state.tags = action.payload
+            console.log(action.payload)
+        })
+        .addCase(getPosts.rejected, (state, action)=>{
+            state.isLoading = false;
+            state.isError = true;
+            state.error = action.error.message
+        })
 
-    //     // postTags
-    //     .addCase(postTags.pending, (state)=>{
-    //         state.isError = false;
-    //         state.isLoading = true;
-    //     })
-    //     .addCase(postTags.fulfilled, (state, action)=>{
-    //         state.isError = false;
-    //         state.isLoading = false;
-    //         state.tags.push(action.payload)
-    //         // console.log(state.isError)
-    //     })
-    //     .addCase(postTags.rejected, (state, action)=>{
-    //         state.isLoading = false;
-    //         state.isError = true;
-    //         state.error = action.error.message
-    //     })
+    //     // postPosts
+        .addCase(postPosts.pending, (state)=>{
+            state.isError = false;
+            state.isLoading = true;
+        })
+        .addCase(postPosts.fulfilled, (state, action)=>{
+            state.isError = false;
+            state.isLoading = false;
+            console.log(action.payload)
+            // console.log(state.isError)
+        })
+        .addCase(postPosts.rejected, (state, action)=>{
+            state.isLoading = false;
+            state.isError = true;
+            state.error = action.error.message
+        })
+
+
     //     // deleteTags
     //     .addCase(deleteTags.pending, (state)=>{
     //         state.isError = false;
@@ -99,7 +101,7 @@ export const postsSlice = createSlice({
     //         const findIndex = state.tags.findIndex(tag => tag.id === action.payload.id)
     //         state.tags[findIndex].name = action.payload.name
     //     })
-    // }
+    }
 })
 
 // Action creators are generated for each case reducer function

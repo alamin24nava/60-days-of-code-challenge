@@ -32,16 +32,16 @@ const Tags =()=>{
         dispatch(deleteTags(id))
     }
     return(
-        <div className="col-6">
-            <form onSubmit={handleSubmit} className="row g-3 mb-4">
+        <div className="border rounded-md p-3 w-full">
+            <form onSubmit={handleSubmit} className="flex gap-4 mb-4">
                 <div className="col-auto">
-                    <input onChange={handleTagName} value={tagName} type="text" className="form-control" placeholder="Create Tag"/>
+                    <input onChange={handleTagName} value={tagName} type="text" className="input input-bordered w-full max-w-xs" placeholder="Create Tag"/>
                 </div>
                 <div className="col-auto">
                     <button className="btn btn-primary">{editableTag == null ?"Create Tag":"Update Tag" }</button>
                 </div>
             </form>
-            <div className="border rounded-3 p-3">
+            <div className="">
                 <h4>Tag Lists</h4>
                 <table className="table">
                     <thead>
@@ -56,9 +56,9 @@ const Tags =()=>{
                                 <tr key={item.id}>
                                     <td>{item.name}</td>
                                     <td>
-                                        <div className="d-flex gap-2 justify-content-end">
-                                            <button onClick={()=>handleEdit(item)} type="button" className="btn btn-secondary">Edit</button>
-                                            <button onClick={()=>handleDelete(item.id)} type="button" className="btn btn-danger">Delete</button>
+                                        <div className="flex gap-2 justify-end">
+                                            <button onClick={()=>handleEdit(item)} type="button" className="btn btn-neutral btn-sm">Edit</button>
+                                            <button onClick={()=>handleDelete(item.id)} type="button" className="btn btn-error btn-sm">Delete</button>
                                         </div>
                                     </td>
                                 </tr>

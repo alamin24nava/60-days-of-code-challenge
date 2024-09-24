@@ -1,10 +1,6 @@
 {
   "catagories": [
     {
-      "title": "html ",
-      "id": 1
-    },
-    {
       "title": "css",
       "id": 2
     },
@@ -38,10 +34,10 @@
   "posts": [
     {
       "id": 1,
-      "author_id": 1,
-      "category_id": 1,
-      "title": "What is Lorem Ipsum?",
-      "desc": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+      "authorId": 1,
+      "catagoryId": 1,
+      "postTitle": "What is Lorem Ipsum?",
+      "postDesc": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
       "dateTime": "2nd Feb,2024 12:30 AM",
       "like": 234,
       "tags": [
@@ -49,6 +45,20 @@
         3,
         4
       ]
+    },
+    {
+      "catagoryId": "2",
+      "authorId": "1",
+      "postTitle": "tttt",
+      "postDesc": "dessss",
+      "id": 2
+    },
+    {
+      "catagoryId": "2",
+      "authorId": "1",
+      "postTitle": "ttt",
+      "postDesc": "rtrtr",
+      "id": 3
     }
   ],
   "comments": [

@@ -57,8 +57,7 @@ const Authors = ()=>{
                         </select>
                     </div>
                     <div className="col-auto">
-                    <input type="text" value={authorName} onChange={handleAuthorName} placeholder="Authour Name" className="input input-bordered w-full max-w-xs" />
-                        {/* <input onChange={handleAuthorName} value={authorName} type="text" className="form-control" id="inputPassword2" placeholder="Authour Name"/> */}
+                        <input type="text" value={authorName} onChange={handleAuthorName} placeholder="Authour Name" className="input input-bordered w-full max-w-xs" />
                     </div>
                     <div className="col-auto">
                         <button type="submit" className="btn btn-primary">Create Author</button>
