@@ -6,7 +6,6 @@ import Test1 from "../components/Test1"
 const Home =()=>{
     return(
         <div className="flex column flex-col gap-8">
-            <Test1/>
             <Catagories/>
             <Authors/>
         </div>

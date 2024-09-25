@@ -1,16 +1,24 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import {postApiTags, deleteApiTags, getApiTags, updateApiTags} from '../tags/tagsAPI'
+import {postApiTags, deleteApiTags, getApiTags, updateApiTags, getApiTagsByName} from '../tags/tagsAPI'
 const initialState = {
     tagName:'',
     tags:[],
     editableTag:null,
     isLoading:false,
     isError:false,
-    error:null
+    error:null,
+    tagsByName: []
 }
 export const getTags = createAsyncThunk('tags/getTags',
     async()=>{
         const tags = await getApiTags()
+        return tags
+    }
+)
+export const getTagsByName = createAsyncThunk('tags/getTagsByName',
+    async(tagName)=>{
+        // console.log(tagName)
+        const tags = await getApiTagsByName(tagName)
         return tags
     }
 )
@@ -86,14 +94,17 @@ export const tagsSlice = createSlice({
             state.isError = true;
             state.error = action.error.message
         })
-
-
         .addCase(updateTags.fulfilled, (state, action)=>{
             state.isLoading = false;
             state.isError = false;
-            console.log(action.payload)
             const findIndex = state.tags.findIndex(tag => tag.id === action.payload.id)
             state.tags[findIndex].name = action.payload.name
+        })
+
+        .addCase(getTagsByName.fulfilled,(state,action)=>{
+            state.isLoading= false
+            state.tagsByName = action.payload
+            // console.log(action.payload)
         })
     }
 })

@@ -5,7 +5,7 @@ import { useEffect, useState } from "react"
 const Authors = ()=>{
     const dispatch = useDispatch()
     const [authorName, setAuthorName] = useState('')
-    const [selectCatagory, setSelectCatagory] = useState()
+    const [selectCatagory, setSelectCatagory] = useState('')
     const {catagories} = useSelector(useGetSelector)
  
 
@@ -13,14 +13,6 @@ const Authors = ()=>{
     const handleAuthorName = (e)=>{
         setAuthorName(e.target.value);
     }
-    // const createAuthor =()=>{
-    //     const newAuthor = {
-    //         id: Date.now(),
-    //         name: authorName,
-    //         catagoryId: selectCatagory,
-    //     }
-    //     return newAuthor
-    // }
     const handleSubmit = (e)=>{
         e.preventDefault()
         authorName.trim() === '' ? alert('Please Provide Author Name'):''
@@ -37,7 +29,6 @@ const Authors = ()=>{
     }
     const handleSelect = (e)=>{
         setSelectCatagory(e.target.value)
-        console.log(e.target.value)
     }
     useEffect(()=>{
         dispatch(getAuthors())
@@ -78,7 +69,6 @@ const Authors = ()=>{
 
                         {authors &&
                             authors.map((item)=>{
-                                
                                 const authorsByCatagory = catagories?.find((findId)=> findId.id == item.catagoryId)
                                 return(
                                     <tr key={item.id}>

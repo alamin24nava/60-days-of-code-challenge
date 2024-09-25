@@ -5,6 +5,11 @@ export const getApiTags = async ()=>{
     const response = await fetch(apiUrl)
     return response.json()
 }
+export const getApiTagsByName = async (tagName)=>{
+    const response = await fetch(`${apiUrl}?name=${tagName}`)
+    return response.json()
+}
+
 // postApiTags
 export const postApiTags = async (newTag)=>{
     const response = await fetch(apiUrl,

@@ -10,6 +10,7 @@ import About from './pages/About.jsx'
 import NoPage from './pages/NoPage.jsx'
 import Layout from './pages/Layout.jsx'; 
 import { Toaster } from 'react-hot-toast';
+import Archive from './pages/Archive.jsx';
   
 // import 'bootstrap/dist/css/bootstrap.min.css'; 
 createRoot(document.getElementById('root')).render(
@@ -23,7 +24,7 @@ createRoot(document.getElementById('root')).render(
                 <Route path="/" element={<Layout/>}>
                     <Route index element={<Home />} />
                     <Route index path="blogs" element={<Blogs />} />
-                    <Route path="about" element={<About />} />
+                    <Route path="archive" element={<Archive />} />
                     <Route path="*" element={<NoPage />} />
                 </Route>
             </Routes>

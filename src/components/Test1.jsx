@@ -17,7 +17,6 @@ const Test1 = () => {
   const filterName = tags.map((item)=>{
     return item.name
   })
-  console.log(filterName);
   
 
   const filteredTags = filterName.filter(

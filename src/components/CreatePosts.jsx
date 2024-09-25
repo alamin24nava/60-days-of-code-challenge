@@ -1,33 +1,22 @@
 import { useDispatch, useSelector } from "react-redux"
 import { useGetSelector, getCatagories } from "../features/catagories/catagoriesSlice"
-import { useTagsSelector } from "../features/tags/tagsSlice"
 import { useAuthorsSelector, dependentAuthorsByCategory } from "../features/authors/authorsSlice"
 import {postPosts} from '../features/posts/postsSlice'
 import { getTags } from "../features/tags/tagsSlice"
-import { useEffect, useState, useRef } from "react"
-import useOutsideClick from '../hooks/useOutsideClick'
+import { useEffect, useState } from "react"
 import moment from "moment"
 import toast from "react-hot-toast"
-import Test from "./Test"
+import SearchableDropdown from "./SearchableDropdown"
+// import Test from "./Test"
 const CreatePosts = ()=>{
     const {catagories} = useSelector(useGetSelector)
-    const {tags} = useSelector(useTagsSelector)
     const {authorsByCategories} = useSelector(useAuthorsSelector)
-    const [open, setOpen] = useState(false)
+    const [selectedDropDown, setSelectedDropDown] = useState([])
     const [selectCatagory, setSelectCatagory] = useState(null)
     const [selectAuthor, setSelectAuthor] = useState(null)
     const [postTitle, setPostTitle] = useState('')
     const [postDesc, setPostDesc] = useState('')
-    const [postTags, setPostTags] = useState([])
-    const [filterData, setFilterData] = useState([])
     const dispatch = useDispatch()
-    const handleSeleteTag = ()=>{
-        setOpen(!open)
-    }
-    const ref = useRef()
-    useOutsideClick(ref, () => {
-        setOpen(false)
-    })
     const handleSelectCatagories = (e)=>{
         setSelectCatagory(e.target.value)
         dispatch(dependentAuthorsByCategory(e.target.value))
@@ -41,12 +30,12 @@ const CreatePosts = ()=>{
             return toast.error('Post Added Failed!')
         }
         const newPost = {
-            catagoryId: selectCatagory,
-            authorId:selectAuthor,
+            catagoryId: parseInt(selectCatagory),
+            authorId:parseInt(selectAuthor),
             postTitle:postTitle,
             postDesc:postDesc,
-            postTags:postTags,
-            dateTime: moment()
+            dateTime: moment(),
+            tags:selectedDropDown,
         }
         dispatch(postPosts(newPost))
         toast.success('Post Added Successfully!')
@@ -66,21 +55,7 @@ const CreatePosts = ()=>{
         setPostDesc(e.target.value)
     }
 
-    const handleTagMenu = (item)=>{ 
-        setFilterData([...filterData, item])
-    }
-
-  
-    const handleFilterTag =(e)=>{
-        const filterItems = tags.filter((item)=> {
-            return item.name.toLowerCase().includes(e.target.value)
-        })
-        setPostTags(filterItems)
-        if(e.target.value == ''){
-            setPostTags([])
-        }
-    }
-    console.log(postTags)
+    
     return(
         <div className="w-full">
             <div className="border rounded-md p-6">
@@ -114,7 +89,7 @@ const CreatePosts = ()=>{
                     <div className="mb-3">
                         <textarea onChange={handlePostDesc} value={postDesc} className="textarea textarea-bordered" placeholder="Post Description"></textarea>
                     </div>
-                    <Test/>
+                    {/* <Test/> */}
                     {/* <div ref={ref}>
                         <div onClick={handleSeleteTag} className="border p-4 rounded-md">-- Select Tags --</div> 
                        {
@@ -152,7 +127,9 @@ const CreatePosts = ()=>{
                                 }
                             </div>
                         </div>
-                    </div>                                   */}
+                    </div>     */}
+
+                    <SearchableDropdown selectedDropDown={selectedDropDown} setSelectedDropDown={setSelectedDropDown}/>                              
                     <div className="col-12">
                         <button type="submit" className="btn btn-primary">Create Post</button>
                     </div>

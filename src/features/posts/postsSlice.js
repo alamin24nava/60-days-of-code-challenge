@@ -1,12 +1,18 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import {postApiPosts, deleteApiPosts, getApiPosts, updateApiPosts} from '../posts/postsAPI'
 const initialState = {
-    catagoryName:'',
-    authorName:'',
-    postTitle:'',
-    postDesc:'',
-    tags:[],
-    editableTag:null,
+    posts:[
+        {
+            authorId:0,
+            catagoryId:0,
+            postTitle:'asdasdasd',
+            postDesc:'',
+            dateTime:null,
+            like:0,
+            editablePost:null,
+            tags:[1,2,4],
+        }
+    ],    
     isLoading:false,
     isError:false,
     error:null
@@ -50,7 +56,7 @@ export const postsSlice = createSlice({
         .addCase(getPosts.fulfilled, (state, action)=>{
             state.isError = false;
             state.isLoading = false;
-            state.tags = action.payload
+            state.posts = action.payload
             console.log(action.payload)
         })
         .addCase(getPosts.rejected, (state, action)=>{
@@ -105,5 +111,5 @@ export const postsSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const useGetSelector = (state)=> state.posts
+export const usePostsGetSelector = (state)=> state.posts
 export default postsSlice.reducer

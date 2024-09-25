@@ -1,265 +1,123 @@
 {
   "catagories": [
     {
-      "id": 1,
-      "title": "Frontend"
+      "title": "Sports",
+      "id": 1
     },
     {
-      "title": "Backend",
+      "title": "Games",
       "id": 2
     },
     {
-      "title": "Full-stack",
+      "title": "Cooking",
       "id": 3
     },
     {
-      "title": "fdfsdfsdf",
+      "title": "Driveing",
       "id": 4
-    },
-    {
-      "title": "bvb",
-      "id": 5
     }
   ],
   "authors": [
     {
-      "name": "SR Setu",
+      "name": "Alamin",
       "catagoryId": 1,
       "id": 1
     },
     {
-      "name": "Hasin Hayder",
+      "name": "Sharif",
       "catagoryId": 2,
       "id": 2
     },
     {
-      "name": "Sumit Saha",
+      "name": "Jibon",
       "catagoryId": 3,
       "id": 3
     },
     {
-      "name": "Sumit Saha",
-      "catagoryId": 2,
+      "name": "Hm",
+      "catagoryId": 4,
       "id": 4
     },
     {
-      "name": "sdfsdfsdfsdf",
-      "catagoryId": 3,
+      "name": "Alamin",
+      "catagoryId": 2,
       "id": 5
-    },
-    {
-      "name": "",
-      "catagoryId": null,
-      "id": 6
     }
   ],
   "tags": [
     {
-      "name": "js",
-      "id": 5
+      "name": "Cricket",
+      "id": 1
     },
     {
-      "id": 6,
-      "name": "cdd"
+      "name": "Bike",
+      "id": 2
     },
     {
-      "name": "hfgfdf",
-      "id": 7
+      "name": "Car",
+      "id": 3
     },
     {
-      "name": " cgh cbg",
-      "id": 8
-    },
-    {
-      "name": "hgfdgcxvbn",
-      "id": 9
-    },
-    {
-      "name": "bvnkhj",
-      "id": 10
-    },
-    {
-      "name": "bgdv df",
-      "id": 11
-    },
-    {
-      "name": "nm,Dfvgjhnj",
-      "id": 12
-    },
-    {
-      "name": "bn n",
-      "id": 13
-    },
-    {
-      "name": "g",
-      "id": 14
-    },
-    {
-      "name": "fgh",
-      "id": 15
-    },
-    {
-      "name": "fgh",
-      "id": 16
-    },
-    {
-      "name": "fghnb",
-      "id": 17
-    },
-    {
-      "name": "nj",
-      "id": 18
-    },
-    {
-      "name": "k",
-      "id": 19
-    },
-    {
-      "name": "gf",
-      "id": 20
-    },
-    {
-      "name": "f",
-      "id": 21
-    },
-    {
-      "name": "fdg",
-      "id": 22
-    },
-    {
-      "name": "dfgdfgdfg",
-      "id": 23
-    },
-    {
-      "name": "dfgdfgdfdfg",
-      "id": 24
-    },
-    {
-      "name": "dfgdf",
-      "id": 25
-    },
-    {
-      "name": "dfgdf",
-      "id": 26
-    },
-    {
-      "name": "gdf fghf",
-      "id": 27
-    },
-    {
-      "name": "kjlj,jh",
-      "id": 28
-    },
-    {
-      "name": "b",
-      "id": 29
-    },
-    {
-      "name": "bvnvcb",
-      "id": 30
-    },
-    {
-      "name": "dfdf",
-      "id": 31
-    },
-    {
-      "name": "dfgdfg",
-      "id": 32
-    },
-    {
-      "name": "dfgdfg",
-      "id": 33
-    },
-    {
-      "name": "dfgdfg",
-      "id": 34
+      "name": "Food",
+      "id": 4
     }
   ],
   "posts": [
     {
-      "id": 1,
-      "authorId": 1,
-      "catagoryId": 1,
-      "postTitle": "What is Lorem Ipsum?",
-      "postDesc": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-      "dateTime": "2nd Feb,2024 12:30 AM",
-      "like": 234,
-      "tags": [
-        1,
-        3,
-        4
-      ]
+      "catagoryId": 2,
+      "authorId": 2,
+      "postTitle": "In React, data is typically passed",
+      "postDesc": "In React, data is typically passed down from parent components to child components via props. However, passing data up from child to parent can be a bit more complex.",
+      "dateTime": "2024-09-25T11:59:51.044Z",
+      "id": 1
     },
     {
-      "catagoryId": "1",
-      "authorId": "1",
-      "postTitle": "dasd",
-      "postDesc": "asdasdasd",
-      "postTags": [],
-      "dateTime": "2024-09-24T18:51:03.129Z",
+      "catagoryId": 3,
+      "authorId": 3,
+      "postTitle": "One way to pass data from ",
+      "postDesc": "child to a parent component is to define a callback function in the parent component and pass it down to the child component as a prop. The child ",
+      "dateTime": "2024-09-25T12:01:56.721Z",
       "id": 2
     },
     {
-      "catagoryId": "1",
-      "authorId": "1",
-      "postTitle": "asd",
-      "postDesc": "sdf",
-      "postTags": [],
-      "dateTime": "2024-09-24T18:51:48.633Z",
+      "catagoryId": 4,
+      "authorId": 4,
+      "postTitle": "In this example, the Parent comp",
+      "postDesc": "onent also renders a <Child> component and passes down the handleDataFromChild function",
+      "dateTime": "2024-09-25T12:05:06.148Z",
+      "tags": [
+        1,
+        2
+      ],
       "id": 3
     },
     {
-      "catagoryId": "1",
-      "authorId": "1",
+      "catagoryId": 2,
+      "authorId": 2,
       "postTitle": "asd",
-      "postDesc": "asdasd",
-      "postTags": [],
-      "dateTime": "2024-09-24T19:08:27.855Z",
+      "postDesc": "asd",
+      "dateTime": "2024-09-25T12:49:15.252Z",
+      "tags": [
+        {
+          "name": "Car",
+          "id": 3
+        }
+      ],
       "id": 4
     },
     {
-      "catagoryId": "2",
-      "authorId": "2",
-      "postTitle": "sdf",
-      "postDesc": "sdf",
-      "postTags": [
+      "catagoryId": 2,
+      "authorId": 2,
+      "postTitle": "dfgd",
+      "postDesc": "dfg",
+      "dateTime": "2024-09-25T12:51:52.866Z",
+      "tags": [
         {
-          "name": "hfgfdf",
-          "id": 7
-        },
-        {
-          "name": "hgfdgcxvbn",
-          "id": 9
+          "name": "Car",
+          "id": 3
         }
       ],
-      "dateTime": "2024-09-24T19:10:01.384Z",
       "id": 5
-    },
-    {
-      "catagoryId": "2",
-      "authorId": "2",
-      "postTitle": "sda",
-      "postDesc": "asdas",
-      "dateTime": "2024-09-24T19:11:13.818Z",
-      "id": 6
-    },
-    {
-      "catagoryId": "2",
-      "authorId": "2",
-      "postTitle": "789",
-      "postDesc": "8989",
-      "postTags": [],
-      "dateTime": "2024-09-25T01:41:17.564Z",
-      "id": 7
-    },
-    {
-      "catagoryId": "1",
-      "authorId": "1",
-      "postTitle": "7898",
-      "postDesc": "78787i7",
-      "postTags": [],
-      "dateTime": "2024-09-25T01:41:43.831Z",
-      "id": 8
     }
   ],
   "comments": [
