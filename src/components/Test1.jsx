@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getTags, useTagsSelector } from "../features/tags/tagsSlice";
 
-const Test = () => {
+const Test1 = () => {
   const [query, setQuery] = useState("");
   const [selected, setSelected] = useState([]);
   const [menuOpen, setMenuOpen] = useState(true);
@@ -32,7 +32,6 @@ const Test = () => {
       (item) =>
         item?.toLocaleLowerCase()?.trim() === query?.toLocaleLowerCase()?.trim()
     )?.length;
-
   return (
     <div className="">
       <div className="relative w-80 h-96 text-sm">
@@ -135,4 +134,4 @@ const Test = () => {
   );
 };
 
-export default Test;
+export default Test1;

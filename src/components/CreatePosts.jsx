@@ -7,6 +7,8 @@ import { getTags } from "../features/tags/tagsSlice"
 import { useEffect, useState, useRef } from "react"
 import useOutsideClick from '../hooks/useOutsideClick'
 import moment from "moment"
+import toast from "react-hot-toast"
+import Test from "./Test"
 const CreatePosts = ()=>{
     const {catagories} = useSelector(useGetSelector)
     const {tags} = useSelector(useTagsSelector)
@@ -17,8 +19,7 @@ const CreatePosts = ()=>{
     const [postTitle, setPostTitle] = useState('')
     const [postDesc, setPostDesc] = useState('')
     const [postTags, setPostTags] = useState([])
-    const [query, setQuery] = useState('')
-    const [selected, setSelected] = useState([])
+    const [filterData, setFilterData] = useState([])
     const dispatch = useDispatch()
     const handleSeleteTag = ()=>{
         setOpen(!open)
@@ -36,15 +37,23 @@ const CreatePosts = ()=>{
     }
     const handleSubmit = (e)=>{
         e.preventDefault()
+        if(selectCatagory == null || selectAuthor == null || postTitle === '' || postDesc == ''){
+            return toast.error('Post Added Failed!')
+        }
         const newPost = {
             catagoryId: selectCatagory,
             authorId:selectAuthor,
             postTitle:postTitle,
             postDesc:postDesc,
-            postTags:[],
+            postTags:postTags,
             dateTime: moment()
         }
         dispatch(postPosts(newPost))
+        toast.success('Post Added Successfully!')
+        setSelectCatagory(null)
+        setSelectAuthor(null)
+        setPostTitle('')
+        setPostDesc('')
     }
     useEffect(()=>{
         dispatch(getTags())
@@ -57,9 +66,21 @@ const CreatePosts = ()=>{
         setPostDesc(e.target.value)
     }
 
-    const handleTagMenu = (item)=>{
-        setPostTags(item)
+    const handleTagMenu = (item)=>{ 
+        setFilterData([...filterData, item])
     }
+
+  
+    const handleFilterTag =(e)=>{
+        const filterItems = tags.filter((item)=> {
+            return item.name.toLowerCase().includes(e.target.value)
+        })
+        setPostTags(filterItems)
+        if(e.target.value == ''){
+            setPostTags([])
+        }
+    }
+    console.log(postTags)
     return(
         <div className="w-full">
             <div className="border rounded-md p-6">
@@ -93,21 +114,45 @@ const CreatePosts = ()=>{
                     <div className="mb-3">
                         <textarea onChange={handlePostDesc} value={postDesc} className="textarea textarea-bordered" placeholder="Post Description"></textarea>
                     </div>
-                    <div ref={ref}>
-                        <div onClick={handleSeleteTag} className="border p-4 rounded-md">-- Select Tags --</div>  
+                    <Test/>
+                    {/* <div ref={ref}>
+                        <div onClick={handleSeleteTag} className="border p-4 rounded-md">-- Select Tags --</div> 
+                       {
+                        filterData.length > 0?
+                        <div className="border flex gap-4 wrap p-4 rounded-md">
+                            {
+                                filterData.map((item)=>
+                                    <div key={item.id} role="alert" className="alert">
+                                        <span>{item.name}</span>
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            className="h-6 w-6 shrink-0 stroke-current"
+                                            fill="none"
+                                            viewBox="0 0 24 24">
+                                            <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth="2"
+                                            d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        </svg>
+                                    </div>
+                                )
+                            }
+                        </div>:null
+                         }
                         <div className={open ? 'border p-4 mt-2 rounded-md block' : 'border mt-2 rounded-md h-0 hidden'}>
                             <div className="w-full mb-4">
-                                <input type="text" onChange={(e)=>setQuery(e.target.value.trimStart())} placeholder="Tags" className="input input-bordered w-full" />
+                                <input type="text" onChange={handleFilterTag} placeholder="Search Or Create Tags..." className="input input-bordered w-full" />
                             </div>
                             <div className="overflow-auto h-[8rem]">
                                 {
-                                    tags.map((item)=>
+                                    postTags.map((item)=>
                                         <div value={item.name} onClick={()=>handleTagMenu(item)} key={item.id} className="cursor-pointer">{item.name}</div>                            
                                     )
                                 }
                             </div>
                         </div>
-                    </div>                                  
+                    </div>                                   */}
                     <div className="col-12">
                         <button type="submit" className="btn btn-primary">Create Post</button>
                     </div>
