@@ -18,7 +18,7 @@ const Tags =()=>{
             return alert('Please Provide Tag Name')
         }
         const newTag = {
-            name:tagName
+            name:tagName.toLowerCase()
         }
         editableTag == null? dispatch(postTags(newTag)):dispatch(updateTags({id:editableTag.id, name:tagName}))
         setTagName('')
@@ -31,6 +31,9 @@ const Tags =()=>{
 
     const handleDelete = (id)=>{
         dispatch(deleteTags(id))
+    }
+    function capitalizeFirstLetter(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
     }
     return(
         <div className="border rounded-md p-3 w-full">
@@ -55,7 +58,7 @@ const Tags =()=>{
                         {tags &&
                             tags.map((item)=>
                                 <tr key={item.id}>
-                                    <td>{item.name}</td>
+                                    <td>{ capitalizeFirstLetter(item.name)}</td>
                                     <td>
                                         <div className="flex gap-2 justify-end">
                                             <button onClick={()=>handleEdit(item)} type="button" className="btn btn-neutral btn-sm">Edit</button>

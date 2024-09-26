@@ -7,7 +7,6 @@ import { useEffect, useState } from "react"
 import moment from "moment"
 import toast from "react-hot-toast"
 import SearchableDropdown from "./SearchableDropdown"
-// import Test from "./Test"
 const CreatePosts = ()=>{
     const {catagories} = useSelector(useGetSelector)
     const {authorsByCategories} = useSelector(useAuthorsSelector)
@@ -89,46 +88,6 @@ const CreatePosts = ()=>{
                     <div className="mb-3">
                         <textarea onChange={handlePostDesc} value={postDesc} className="textarea textarea-bordered" placeholder="Post Description"></textarea>
                     </div>
-                    {/* <Test/> */}
-                    {/* <div ref={ref}>
-                        <div onClick={handleSeleteTag} className="border p-4 rounded-md">-- Select Tags --</div> 
-                       {
-                        filterData.length > 0?
-                        <div className="border flex gap-4 wrap p-4 rounded-md">
-                            {
-                                filterData.map((item)=>
-                                    <div key={item.id} role="alert" className="alert">
-                                        <span>{item.name}</span>
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            className="h-6 w-6 shrink-0 stroke-current"
-                                            fill="none"
-                                            viewBox="0 0 24 24">
-                                            <path
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            strokeWidth="2"
-                                            d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                        </svg>
-                                    </div>
-                                )
-                            }
-                        </div>:null
-                         }
-                        <div className={open ? 'border p-4 mt-2 rounded-md block' : 'border mt-2 rounded-md h-0 hidden'}>
-                            <div className="w-full mb-4">
-                                <input type="text" onChange={handleFilterTag} placeholder="Search Or Create Tags..." className="input input-bordered w-full" />
-                            </div>
-                            <div className="overflow-auto h-[8rem]">
-                                {
-                                    postTags.map((item)=>
-                                        <div value={item.name} onClick={()=>handleTagMenu(item)} key={item.id} className="cursor-pointer">{item.name}</div>                            
-                                    )
-                                }
-                            </div>
-                        </div>
-                    </div>     */}
-
                     <SearchableDropdown selectedDropDown={selectedDropDown} setSelectedDropDown={setSelectedDropDown}/>                              
                     <div className="col-12">
                         <button type="submit" className="btn btn-primary">Create Post</button>

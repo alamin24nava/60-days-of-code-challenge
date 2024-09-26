@@ -5,7 +5,7 @@ const initialState = {
         {
             authorId:0,
             catagoryId:0,
-            postTitle:'asdasdasd',
+            postTitle:'',
             postDesc:'',
             dateTime:null,
             like:0,
