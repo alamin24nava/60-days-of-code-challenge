@@ -1,9 +1,9 @@
-import ProductCard from "../components/ProductCard"
+import PostCard from "../components/PostCard"
 
 const Archive = ()=>{
     return(
         <>
-            <ProductCard/>
+            <PostCard/>
         </>
     )
 }

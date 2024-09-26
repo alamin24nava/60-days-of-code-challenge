@@ -1,28 +1,19 @@
 {
   "catagories": [
     {
-      "title": "Sports",
-      "id": 1
+      "id": 2,
+      "title": "games"
     },
     {
-      "title": "Games",
-      "id": 2
+      "id": 3,
+      "title": "cooking"
     },
     {
-      "title": "Cooking",
-      "id": 3
-    },
-    {
-      "title": "Driveing",
-      "id": 4
+      "id": 4,
+      "title": "driveing"
     }
   ],
   "authors": [
-    {
-      "name": "Alamin",
-      "catagoryId": 1,
-      "id": 1
-    },
     {
       "name": "Sharif",
       "catagoryId": 2,
@@ -46,90 +37,60 @@
   ],
   "tags": [
     {
-      "name": "Cricket",
-      "id": 1
+      "id": 1,
+      "name": "cricket"
     },
     {
-      "name": "Bike",
-      "id": 2
+      "id": 4,
+      "name": "food"
     },
     {
-      "name": "Car",
-      "id": 3
-    },
-    {
-      "name": "Food",
-      "id": 4
-    },
-    {
-      "name": "vd",
+      "name": "asas",
       "id": 5
     },
     {
-      "name": "asds",
+      "name": "food s",
       "id": 6
     },
     {
-      "name": "dddd",
+      "name": "asasas",
       "id": 7
     }
   ],
   "posts": [
     {
       "catagoryId": 2,
-      "authorId": 2,
-      "postTitle": "In React, data is typically passed",
-      "postDesc": "In React, data is typically passed down from parent components to child components via props. However, passing data up from child to parent can be a bit more complex.",
-      "dateTime": "2024-09-25T11:59:51.044Z",
+      "authorId": 5,
+      "postTitle": "Include popular icons in your React projects easly with react-icons.",
+      "postDesc": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+      "dateTime": "2024-09-20T05:11:46.310Z",
+      "tags": [
+        1,
+        4
+      ],
       "id": 1
+    },
+    {
+      "catagoryId": 2,
+      "authorId": 4,
+      "postTitle": "Lorem Ipsum is simply dummy text of the printing ",
+      "postDesc": "Ipsum has been the industry's standard dummy text ever since the 1500s, when Include popular icons in your React projects easly with react-icons  an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+      "dateTime": "2024-09-20T05:11:46.310Z",
+      "tags": [
+        4
+      ],
+      "id": 2
     },
     {
       "catagoryId": 3,
       "authorId": 3,
-      "postTitle": "One way to pass data from ",
-      "postDesc": "child to a parent component is to define a callback function in the parent component and pass it down to the child component as a prop. The child ",
-      "dateTime": "2024-09-25T12:01:56.721Z",
-      "id": 2
-    },
-    {
-      "catagoryId": 4,
-      "authorId": 4,
-      "postTitle": "In this example, the Parent comp",
-      "postDesc": "onent also renders a <Child> component and passes down the handleDataFromChild function",
-      "dateTime": "2024-09-25T12:05:06.148Z",
+      "postTitle": "sdas",
+      "postDesc": "asdasd",
+      "dateTime": "2024-09-26T06:37:10.470Z",
       "tags": [
-        1,
-        2
+        4
       ],
       "id": 3
-    },
-    {
-      "catagoryId": 2,
-      "authorId": 2,
-      "postTitle": "asd",
-      "postDesc": "asd",
-      "dateTime": "2024-09-25T12:49:15.252Z",
-      "tags": [
-        {
-          "name": "Car",
-          "id": 3
-        }
-      ],
-      "id": 4
-    },
-    {
-      "catagoryId": 2,
-      "authorId": 2,
-      "postTitle": "dfgd",
-      "postDesc": "dfg",
-      "dateTime": "2024-09-25T12:51:52.866Z",
-      "tags": [
-        {
-          "name": "Car",
-          "id": 3
-        }
-      ],
-      "id": 5
     }
   ],
   "comments": [

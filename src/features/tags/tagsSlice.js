@@ -17,7 +17,6 @@ export const getTags = createAsyncThunk('tags/getTags',
 )
 export const getTagsByName = createAsyncThunk('tags/getTagsByName',
     async(tagName)=>{
-        // console.log(tagName)
         const tags = await getApiTagsByName(tagName)
         return tags
     }
@@ -100,11 +99,13 @@ export const tagsSlice = createSlice({
             const findIndex = state.tags.findIndex(tag => tag.id === action.payload.id)
             state.tags[findIndex].name = action.payload.name
         })
-
+        .addCase(getTagsByName.pending,(state)=>{
+            state.isError = false
+            state.isLoading= true
+        })
         .addCase(getTagsByName.fulfilled,(state,action)=>{
             state.isLoading= false
             state.tagsByName = action.payload
-            // console.log(action.payload)
         })
     }
 })

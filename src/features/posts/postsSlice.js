@@ -57,7 +57,6 @@ export const postsSlice = createSlice({
             state.isError = false;
             state.isLoading = false;
             state.posts = action.payload
-            console.log(action.payload)
         })
         .addCase(getPosts.rejected, (state, action)=>{
             state.isLoading = false;
@@ -73,7 +72,6 @@ export const postsSlice = createSlice({
         .addCase(postPosts.fulfilled, (state, action)=>{
             state.isError = false;
             state.isLoading = false;
-            console.log(action.payload)
             // console.log(state.isError)
         })
         .addCase(postPosts.rejected, (state, action)=>{

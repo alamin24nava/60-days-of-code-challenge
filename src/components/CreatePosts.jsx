@@ -11,6 +11,8 @@ const CreatePosts = ()=>{
     const {catagories} = useSelector(useGetSelector)
     const {authorsByCategories} = useSelector(useAuthorsSelector)
     const [selectedDropDown, setSelectedDropDown] = useState([])
+    let selectedTagId = selectedDropDown.map( (item) => item.id);
+
     const [selectCatagory, setSelectCatagory] = useState(null)
     const [selectAuthor, setSelectAuthor] = useState(null)
     const [postTitle, setPostTitle] = useState('')
@@ -28,13 +30,14 @@ const CreatePosts = ()=>{
         if(selectCatagory == null || selectAuthor == null || postTitle === '' || postDesc == ''){
             return toast.error('Post Added Failed!')
         }
+
         const newPost = {
             catagoryId: parseInt(selectCatagory),
             authorId:parseInt(selectAuthor),
             postTitle:postTitle,
             postDesc:postDesc,
             dateTime: moment(),
-            tags:selectedDropDown,
+            tags:selectedTagId,
         }
         dispatch(postPosts(newPost))
         toast.success('Post Added Successfully!')
