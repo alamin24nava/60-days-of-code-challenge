@@ -9,10 +9,10 @@ const initialState = {
             postDesc:'',
             dateTime:null,
             like:0,
-            editablePost:null,
             tags:[1,2,4],
         }
-    ],    
+    ],
+    editablePost:null,    
     isLoading:false,
     isError:false,
     error:null
@@ -46,6 +46,11 @@ export const deletePosts = createAsyncThunk('posts/deletePosts',
 export const postsSlice = createSlice({
     name: 'posts',
     initialState,
+    reducers: {
+        EDITABLE_BLOG:(state, action)=>{
+            state.editablePost = action.payload
+        },
+    },
     extraReducers:(builder)=>{
         builder
         // getPosts
@@ -98,16 +103,19 @@ export const postsSlice = createSlice({
     //     })
 
 
-    //     .addCase(updateTags.fulfilled, (state, action)=>{
-    //         state.isLoading = false;
-    //         state.isError = false;
-    //         console.log(action.payload)
-    //         const findIndex = state.tags.findIndex(tag => tag.id === action.payload.id)
-    //         state.tags[findIndex].name = action.payload.name
-    //     })
+        .addCase(updatePosts.fulfilled, (state, action)=>{
+            state.isLoading = false;
+            state.isError = false;
+            console.log(action.payload)
+            const findIndex = state.posts.findIndex(post => post.id === action.payload.id)
+            state.posts[findIndex] = action.payload
+            state.editablePost = null
+
+        })
     }
 })
 
 // Action creators are generated for each case reducer function
 export const usePostsGetSelector = (state)=> state.posts
+export const { EDITABLE_BLOG } = postsSlice.actions
 export default postsSlice.reducer

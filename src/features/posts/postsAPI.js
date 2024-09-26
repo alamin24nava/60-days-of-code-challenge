@@ -17,12 +17,16 @@ export const postApiPosts = async (newPost)=>{
     return response.json()
 }
 // updateApiPosts
-export const updateApiPosts = async (post)=>{
-    console.log(post)
-    const response = await fetch(`${apiUrl}/${post.id}`,
+export const updateApiPosts = async ({editablePost,dispatchUpdatePosts })=>{
+    const {selectCatagory, selectAuthor, postTitle, postDesc} = dispatchUpdatePosts
+    console.log(dispatchUpdatePosts)
+    const {id, ...rest} = editablePost;
+    const updatedPost = {...rest, catagoryId:selectCatagory, authorId:selectAuthor, postDesc:postDesc, postTitle:postTitle}
+    
+    const response = await fetch(`${apiUrl}/${id}`,
         {
             method:"PUT",
-            body:JSON.stringify(post),
+            body:JSON.stringify(updatedPost),
             headers:{"Content-type":"application/json"}
         }
     )

@@ -1,11 +1,9 @@
 import { useDispatch, useSelector } from "react-redux"
 import { useEffect, useState } from "react"
 import { deleteCatagories, getCatagories, postCatagories, useGetSelector,updateCatagories } from "../features/catagories/catagoriesSlice"
-import Placeholder from "./Placeholder"
 import GlobalLoading from "./GlobalLoading"
 import DataNotFound from "./DataNotFound"
 import toast from "react-hot-toast"
-import Toast from "./Toast"
 const Catagories =()=>{
     const dispatch = useDispatch()
     const [catagoryName, setCatagoryName] = useState('')
@@ -75,8 +73,8 @@ const Catagories =()=>{
                                             <td>{catagory.title}</td>
                                             <td>
                                                 <div className="flex gap-2 justify-end">
-                                                    <button type="button" onClick={()=>handleEdit(catagory)} className="btn btn-neutral">Edit</button>
-                                                    <button onClick={()=>handleDelete(catagory.id)} type="button" className="btn btn-error">Delete</button>
+                                                    <button type="button" onClick={()=>handleEdit(catagory)} className="btn btn-neutral btn-sm">Edit</button>
+                                                    <button onClick={()=>handleDelete(catagory.id)} type="button" className="btn btn-error btn-sm">Delete</button>
                                                 </div>
                                             </td>
                                         </tr>

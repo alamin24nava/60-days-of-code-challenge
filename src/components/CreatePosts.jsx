@@ -1,18 +1,19 @@
 import { useDispatch, useSelector } from "react-redux"
 import { useGetSelector, getCatagories } from "../features/catagories/catagoriesSlice"
 import { useAuthorsSelector, dependentAuthorsByCategory } from "../features/authors/authorsSlice"
-import {postPosts} from '../features/posts/postsSlice'
+import {postPosts, updatePosts, usePostsGetSelector} from '../features/posts/postsSlice'
 import { getTags } from "../features/tags/tagsSlice"
 import { useEffect, useState } from "react"
 import moment from "moment"
 import toast from "react-hot-toast"
 import SearchableDropdown from "./SearchableDropdown"
-const CreatePosts = ()=>{
+const CreatePosts = (props)=>{
+    console.log(props.jabe)
     const {catagories} = useSelector(useGetSelector)
+    const {editablePost} = useSelector(usePostsGetSelector)
     const {authorsByCategories} = useSelector(useAuthorsSelector)
     const [selectedDropDown, setSelectedDropDown] = useState([])
     let selectedTagId = selectedDropDown.map( (item) => item.id);
-
     const [selectCatagory, setSelectCatagory] = useState(null)
     const [selectAuthor, setSelectAuthor] = useState(null)
     const [postTitle, setPostTitle] = useState('')
@@ -30,7 +31,6 @@ const CreatePosts = ()=>{
         if(selectCatagory == null || selectAuthor == null || postTitle === '' || postDesc == ''){
             return toast.error('Post Added Failed!')
         }
-
         const newPost = {
             catagoryId: parseInt(selectCatagory),
             authorId:parseInt(selectAuthor),
@@ -39,8 +39,23 @@ const CreatePosts = ()=>{
             dateTime: moment(),
             tags:selectedTagId,
         }
-        dispatch(postPosts(newPost))
-        toast.success('Post Added Successfully!')
+
+        if(!editablePost){
+            dispatch(postPosts(newPost))
+            toast.success('Post Added Successfully!')
+        }else{
+            const dispatchUpdatePosts = {
+                selectCatagory,
+                selectAuthor,
+                postTitle,
+                postDesc
+            }
+            dispatch(updatePosts({editablePost,dispatchUpdatePosts }))
+            toast.success('Post Added Updated!')
+            props.setIsModal(false)
+
+        }
+        
         setSelectCatagory(null)
         setSelectAuthor(null)
         setPostTitle('')
@@ -57,11 +72,14 @@ const CreatePosts = ()=>{
         setPostDesc(e.target.value)
     }
 
+    // const childTParent = ()=>{
+
+    // }
     
     return(
         <div className="w-full">
             <div className="border rounded-md p-6">
-                <form onSubmit={handleSubmit} className="flex gap-4 flex-col">
+                <form className="flex gap-4 flex-col">
                     <div className="col-12">
                         <select onChange={handleSelectCatagories} className="select select-bordered w-full max-w-xs">
                             <option>-- Select Category --</option>
@@ -93,7 +111,7 @@ const CreatePosts = ()=>{
                     </div>
                     <SearchableDropdown selectedDropDown={selectedDropDown} setSelectedDropDown={setSelectedDropDown}/>                              
                     <div className="col-12">
-                        <button type="submit" className="btn btn-primary">Create Post</button>
+                        <button type="button" onClick={handleSubmit} className="btn btn-primary">{!editablePost ? "Create Post":"Updated Post"}</button>
                     </div>
                 </form>
             </div>

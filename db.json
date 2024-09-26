@@ -2,7 +2,7 @@
   "catagories": [
     {
       "id": 2,
-      "title": "games"
+      "title": "games asas"
     },
     {
       "id": 3,
@@ -37,37 +37,41 @@
   ],
   "tags": [
     {
-      "id": 1,
-      "name": "cricket"
+      "id": 1727364180306,
+      "name": "asas"
     },
     {
-      "id": 4,
-      "name": "food"
+      "id": 1727364181704,
+      "name": "dasdasd"
     },
     {
-      "name": "asas",
-      "id": 5
+      "id": 1727364182708,
+      "name": "sdasd"
     },
     {
-      "name": "food s",
-      "id": 6
+      "id": 1727364184618,
+      "name": "sada"
     },
     {
-      "name": "asasas",
-      "id": 7
+      "id": 1727366441702,
+      "name": "fg"
     },
     {
-      "name": "alamin",
-      "id": 8
+      "id": 1727366446406,
+      "name": "gf"
     },
     {
-      "id": 1727359559194,
-      "name": "asdasda"
+      "id": 1727366920930,
+      "name": "dfsdf"
+    },
+    {
+      "id": 1727367716772,
+      "name": "sfdsdsdsdfdfsdf"
     }
   ],
   "posts": [
     {
-      "catagoryId": 2,
+      "catagoryId": "3",
       "authorId": 5,
       "postTitle": "Include popular icons in your React projects easly with react-icons.",
       "postDesc": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
@@ -90,15 +94,87 @@
       "id": 2
     },
     {
-      "catagoryId": 3,
-      "authorId": 3,
-      "postTitle": "sdas",
-      "postDesc": "asdasd",
+      "catagoryId": "4",
+      "authorId": "4",
+      "postTitle": "text ever since the 1500s, when Include popul",
+      "postDesc": "ar icons in your React projects easly with react-icons an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
       "dateTime": "2024-09-26T06:37:10.470Z",
       "tags": [
         4
       ],
       "id": 3
+    },
+    {
+      "catagoryId": "3",
+      "authorId": "3",
+      "postTitle": "j",
+      "postDesc": "j",
+      "dateTime": "2024-09-26T15:23:09.243Z",
+      "tags": [],
+      "id": 4
+    },
+    {
+      "catagoryId": 3,
+      "authorId": 3,
+      "postTitle": "g",
+      "postDesc": "f",
+      "dateTime": "2024-09-26T16:08:27.387Z",
+      "tags": [],
+      "id": 5
+    },
+    {
+      "catagoryId": "4",
+      "authorId": "4",
+      "postTitle": "dsfsd",
+      "postDesc": "sdfsdsdf",
+      "dateTime": "2024-09-26T16:08:43.904Z",
+      "tags": [],
+      "id": 6
+    },
+    {
+      "catagoryId": 4,
+      "authorId": 4,
+      "postTitle": "xcv",
+      "postDesc": "xcvvxc",
+      "dateTime": "2024-09-26T17:05:11.646Z",
+      "tags": [],
+      "id": 7
+    },
+    {
+      "catagoryId": 2,
+      "authorId": 5,
+      "postTitle": "asda",
+      "postDesc": "sasd",
+      "dateTime": "2024-09-26T18:15:55.020Z",
+      "tags": [],
+      "id": 8
+    },
+    {
+      "catagoryId": 2,
+      "authorId": 2,
+      "postTitle": "hgh",
+      "postDesc": "ghjgh",
+      "dateTime": "2024-09-26T18:17:29.708Z",
+      "tags": [],
+      "id": 9
+    },
+    {
+      "catagoryId": 4,
+      "authorId": 4,
+      "postTitle": "gfgf",
+      "postDesc": "fghfg",
+      "dateTime": "2024-09-26T18:18:27.747Z",
+      "tags": [],
+      "id": 10
+    },
+    {
+      "catagoryId": "3",
+      "authorId": "3",
+      "postTitle": "fdgdgdgfdg",
+      "postDesc": "dfgdfgdfgdfg",
+      "dateTime": "2024-09-26T18:45:29.233Z",
+      "tags": [],
+      "id": 11
     }
   ],
   "comments": [

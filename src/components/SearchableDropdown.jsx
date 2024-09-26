@@ -21,15 +21,10 @@ const SearchableDropdown = (
     useOutsideClick(ref, () => {
         setOpen(false)
     })
-    // const handleKeyUp = (e) => {
-    //     if (e.key !== "Enter") return 'asdjas'
-    //     // handleInput()
-    // }
     const handleFilterTag =(e)=>{
         setChangeTagName(e.target.value)
     }
     const handleSelectedDropDown = (item)=>{
-        
         const alreadySelectedTag = selectedDropDown.find((r)=>( r?.id === item?.id))
         if(alreadySelectedTag){
           toast.error("Already Selected This Tag!")
@@ -62,16 +57,6 @@ const SearchableDropdown = (
             handleSelectedDropDown(newTag)
             setChangeTagName('')
         }
-        // console.log(tagsByName,noTag);
-        // const alr = tags.find((rr)=>( rr.name == changeTagName));
-        // if(!noTag){
-        
-        // }else{
-        //     handleSelectedDropDown(noTag)
-        // }
-        // if(!noTag){
-        //     // setSelectedDropDowns([...selectedDropDown])
-        // }
     }
     const handleKeyUp = (e) => {
         if (e.key !== "Enter") return 

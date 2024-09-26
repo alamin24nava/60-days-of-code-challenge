@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from "react-redux"
-import { usePostsGetSelector, getPosts } from "../features/posts/postsSlice"
+import { usePostsGetSelector, getPosts, EDITABLE_BLOG } from "../features/posts/postsSlice"
 import { useGetSelector, getCatagories} from "../features/catagories/catagoriesSlice"
 import { useAuthorsSelector, getAuthors} from "../features/authors/authorsSlice"
 import { useTagsSelector, getTags} from "../features/tags/tagsSlice"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { FaRegClock } from "react-icons/fa6";
 import moment from "moment"
 import CreatePosts from "./CreatePosts"
@@ -13,13 +13,30 @@ const PostCard = ()=>{
     const {authors} = useSelector(useAuthorsSelector)
     const {tags} = useSelector(useTagsSelector)
     const dispatch = useDispatch()
+    const [isModal, setIsModal] = useState(false)
+    const closeBtn = ()=>{
+        setIsModal(false)
+    }
 
+    const pp = (data)=>{
+        console.log(data)
+    }
+
+
+    const handleEdit = (blog)=>{
+        dispatch(EDITABLE_BLOG(blog))
+        setIsModal(true)
+        pp()
+    }
     useEffect(()=>{
         dispatch(getPosts())
         dispatch(getCatagories())
         dispatch(getAuthors())
         dispatch(getTags())
     }, [dispatch])
+
+
+
     return(
         <>
         <div className="grid grid-cols-4 gap-4">
@@ -48,7 +65,7 @@ const PostCard = ()=>{
                                 <p>{item.postDesc}</p>
                                 <a className="link" href="#">Read More</a>
                                 <div className="flex justify-between items-center gap-2">
-                                    <button className="btn btn-neutral btn-sm" onClick={()=>document.getElementById('my_modal_2').showModal()} type="button">Edit</button>
+                                    <button className="btn btn-neutral btn-sm" onClick={()=> handleEdit(item)} type="button">Edit</button>
                                     <div className="card-actions justify-end">
 
                                     {
@@ -77,15 +94,17 @@ const PostCard = ()=>{
             }
         </div>
             
-        <dialog id="my_modal_2" className="modal">
-            <div className="modal-box w-11/12 max-w-5xl">
-                <h3 className="font-bold text-lg">Hello!</h3>
-                <p className="py-4">Press ESC key or click outside to close</p>
-            <CreatePosts/>
+     
+        <dialog id="my_modal_1" className="modal" open={isModal}>
+            <div className="modal-box">
+            <h3 className="font-bold text-lg">Hello!</h3>
+            <p className="py-4">Press ESC key or click the button below to close</p>
+            <CreatePosts jabe={pp} isModal={isModal} setIsModal={setIsModal} onHandleEdit = {handleEdit}/>
+            <div className="modal-action">
+                <button className="btn" onClick={closeBtn}>Close</button>
+       
             </div>
-            <form method="dialog" className="modal-backdrop">
-                <button>close</button>
-            </form>
+        </div>
         </dialog>
         </>
 
