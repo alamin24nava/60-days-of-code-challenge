@@ -5,8 +5,10 @@ import { useDispatch, useSelector } from "react-redux";
 import toast from "react-hot-toast";
 
 
-const SearchableDropdown = ({selectedDropDown, setSelectedDropDown}) => {
-    // const [selectedDropDown, setSelectedDropDown] = useState([])
+const SearchableDropdown = (
+    // {selectedDropDown, setSelectedDropDowns}
+) => {
+    const [selectedDropDown, setSelectedDropDowns] = useState([])
     const [open, setOpen] = useState(false)
     const [changeTagName, setChangeTagName] = useState('')
     const {tagsByName} = useSelector(useTagsSelector)
@@ -27,37 +29,49 @@ const SearchableDropdown = ({selectedDropDown, setSelectedDropDown}) => {
         setChangeTagName(e.target.value)
     }
     const handleSelectedDropDown = (item)=>{
-        const alreadySelectedTag = selectedDropDown.find((r)=>( r?.name === item?.name))
-        if(alreadySelectedTag?.name){
+        
+        const alreadySelectedTag = selectedDropDown.find((r)=>( r?.id === item?.id))
+        if(alreadySelectedTag){
           toast.error("Already Selected This Tag!")
+          setChangeTagName('')
           return
         }
-        setSelectedDropDown([...selectedDropDown, item])
+        console.log(item);
+        setSelectedDropDowns([...selectedDropDown, item])
         setChangeTagName('')
         toast.success(`Successfully ${changeTagName} Tag Selected!`)
     }
     const removeSelectedDropDown = (id)=>{
         const updatedDropDown = selectedDropDown.filter((item)=> item.id !== id)
-        setSelectedDropDown(updatedDropDown)
+        setSelectedDropDowns(updatedDropDown)
     }
     useEffect(()=>{
         dispatch(getTagsByName(changeTagName))
     },[dispatch, changeTagName])
 
     const notFindTag = ()=>{
-        const noTag = tagsByName.find((r)=>( r.name !== changeTagName))
-        const alr = tags.find((rr)=>( rr.name == changeTagName))
-
-        const newTag = {
-            name:changeTagName.toLowerCase()
-        }
-        if(!noTag && !alr?.name){
+        const noTag = tagsByName.find((r)=>( r.name === changeTagName))
+        if(noTag){
+            handleSelectedDropDown(noTag)
+        }else{
+            const newTag = {
+                id : Date.now(),
+                name:changeTagName.toLowerCase()
+            }
             dispatch(postTags(newTag))
+            handleSelectedDropDown(newTag)
             setChangeTagName('')
         }
-        if(!noTag){
-            setSelectedDropDown([...selectedDropDown])
-        }
+        // console.log(tagsByName,noTag);
+        // const alr = tags.find((rr)=>( rr.name == changeTagName));
+        // if(!noTag){
+        
+        // }else{
+        //     handleSelectedDropDown(noTag)
+        // }
+        // if(!noTag){
+        //     // setSelectedDropDowns([...selectedDropDown])
+        // }
     }
     const handleKeyUp = (e) => {
         if (e.key !== "Enter") return 
