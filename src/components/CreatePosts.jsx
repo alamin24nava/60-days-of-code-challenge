@@ -8,14 +8,13 @@ import moment from "moment"
 import toast from "react-hot-toast"
 import SearchableDropdown from "./SearchableDropdown"
 const CreatePosts = (props)=>{
-    console.log(props.jabe)
     const {catagories} = useSelector(useGetSelector)
     const {editablePost} = useSelector(usePostsGetSelector)
     const {authorsByCategories} = useSelector(useAuthorsSelector)
     const [selectedDropDown, setSelectedDropDown] = useState([])
     let selectedTagId = selectedDropDown.map( (item) => item.id);
-    const [selectCatagory, setSelectCatagory] = useState(null)
-    const [selectAuthor, setSelectAuthor] = useState(null)
+    const [selectCatagory, setSelectCatagory] = useState('')
+    const [selectAuthor, setSelectAuthor] = useState('')
     const [postTitle, setPostTitle] = useState('')
     const [postDesc, setPostDesc] = useState('')
     const dispatch = useDispatch()
@@ -26,9 +25,15 @@ const CreatePosts = (props)=>{
     const handleSelectAuthors = (e)=>{
         setSelectAuthor(e.target.value)
     }
+    const handlePostTitle = (e)=>{
+        setPostTitle(e.target.value)
+    }
+    const handlePostDesc = (e)=>{
+        setPostDesc(e.target.value)
+    }
     const handleSubmit = (e)=>{
         e.preventDefault()
-        if(selectCatagory == null || selectAuthor == null || postTitle === '' || postDesc == ''){
+        if(selectCatagory == '' || selectAuthor == '' || postTitle === '' || postDesc == ''){
             return toast.error('Post Added Failed!')
         }
         const newPost = {
@@ -53,35 +58,24 @@ const CreatePosts = (props)=>{
             dispatch(updatePosts({editablePost,dispatchUpdatePosts }))
             toast.success('Post Added Updated!')
             props.setIsModal(false)
-
         }
         
-        setSelectCatagory(null)
-        setSelectAuthor(null)
-        setPostTitle('')
+        setSelectCatagory('')
+        setSelectAuthor('')
         setPostDesc('')
+        setPostTitle('')
     }
     useEffect(()=>{
         dispatch(getTags())
         dispatch(getCatagories())
     },[dispatch])
-    const handlePostTitle = (e)=>{
-        setPostTitle(e.target.value)
-    }
-    const handlePostDesc = (e)=>{
-        setPostDesc(e.target.value)
-    }
 
-    // const childTParent = ()=>{
-
-    // }
-    
     return(
         <div className="w-full">
             <div className="border rounded-md p-6">
                 <form className="flex gap-4 flex-col">
                     <div className="col-12">
-                        <select onChange={handleSelectCatagories} className="select select-bordered w-full max-w-xs">
+                        <select onChange={handleSelectCatagories} value={selectCatagory} className="select select-bordered w-full max-w-xs">
                             <option>-- Select Category --</option>
                             {
                                 catagories &&
@@ -93,7 +87,7 @@ const CreatePosts = (props)=>{
                     </div>
                     
                     <div className="col-12">
-                        <select onChange={handleSelectAuthors} className="select select-bordered w-full max-w-xs">
+                        <select onChange={handleSelectAuthors} value={selectAuthor} className="select select-bordered w-full max-w-xs">
                             <option>-- Select Author --</option>
                             {
                                 authorsByCategories &&
@@ -104,7 +98,7 @@ const CreatePosts = (props)=>{
                         </select>
                     </div>
                     <div className="col-12">
-                        <input type="text" onChange={handlePostTitle} placeholder="Post Title" className="input input-bordered w-full max-w-xs" />
+                        <input type="text" onChange={handlePostTitle} value={postTitle} placeholder="Post Title" className="input input-bordered w-full max-w-xs" />
                     </div>
                     <div className="mb-3">
                         <textarea onChange={handlePostDesc} value={postDesc} className="textarea textarea-bordered" placeholder="Post Description"></textarea>

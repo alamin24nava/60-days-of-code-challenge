@@ -2,7 +2,7 @@
   "catagories": [
     {
       "id": 2,
-      "title": "games asas"
+      "title": "games"
     },
     {
       "id": 3,
@@ -37,144 +37,71 @@
   ],
   "tags": [
     {
-      "id": 1727364180306,
-      "name": "asas"
+      "name": "css",
+      "id": 1
     },
     {
-      "id": 1727364181704,
-      "name": "dasdasd"
+      "name": "js",
+      "id": 2
     },
     {
-      "id": 1727364182708,
-      "name": "sdasd"
+      "name": "html",
+      "id": 3
     },
     {
-      "id": 1727364184618,
-      "name": "sada"
+      "id": 1727434988317,
+      "name": "asd"
     },
     {
-      "id": 1727366441702,
-      "name": "fg"
-    },
-    {
-      "id": 1727366446406,
-      "name": "gf"
-    },
-    {
-      "id": 1727366920930,
-      "name": "dfsdf"
-    },
-    {
-      "id": 1727367716772,
-      "name": "sfdsdsdsdfdfsdf"
+      "id": 1727435260068,
+      "name": "alamin"
     }
   ],
   "posts": [
     {
-      "catagoryId": "3",
-      "authorId": 5,
-      "postTitle": "Include popular icons in your React projects easly with react-icons.",
-      "postDesc": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
-      "dateTime": "2024-09-20T05:11:46.310Z",
-      "tags": [
-        1,
-        4
-      ],
-      "id": 1
-    },
-    {
-      "catagoryId": 2,
+      "catagoryId": 4,
       "authorId": 4,
-      "postTitle": "Lorem Ipsum is simply dummy text of the printing ",
-      "postDesc": "Ipsum has been the industry's standard dummy text ever since the 1500s, when Include popular icons in your React projects easly with react-icons  an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
-      "dateTime": "2024-09-20T05:11:46.310Z",
-      "tags": [
-        4
-      ],
-      "id": 2
-    },
-    {
-      "catagoryId": "4",
-      "authorId": "4",
-      "postTitle": "text ever since the 1500s, when Include popul",
-      "postDesc": "ar icons in your React projects easly with react-icons an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
-      "dateTime": "2024-09-26T06:37:10.470Z",
-      "tags": [
-        4
-      ],
+      "postTitle": "Many desktop publishing packages and web page editors now ",
+      "postDesc": "Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Variou",
+      "dateTime": "2024-09-27T08:55:56.850Z",
+      "tags": [1,3],
       "id": 3
     },
     {
-      "catagoryId": "3",
-      "authorId": "3",
-      "postTitle": "j",
-      "postDesc": "j",
-      "dateTime": "2024-09-26T15:23:09.243Z",
-      "tags": [],
+      "catagoryId": 2,
+      "authorId": 2,
+      "postTitle": "Where can I get some?",
+      "postDesc": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are ",
+      "dateTime": "2024-09-27T09:03:27.592Z",
+      "tags": [1],
       "id": 4
     },
     {
       "catagoryId": 3,
       "authorId": 3,
-      "postTitle": "g",
-      "postDesc": "f",
-      "dateTime": "2024-09-26T16:08:27.387Z",
-      "tags": [],
+      "postTitle": "Where does it come from?",
+      "postDesc": "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampde",
+      "dateTime": "2024-09-27T09:04:09.069Z",
+      "tags": [2],
       "id": 5
-    },
-    {
-      "catagoryId": "4",
-      "authorId": "4",
-      "postTitle": "dsfsd",
-      "postDesc": "sdfsdsdf",
-      "dateTime": "2024-09-26T16:08:43.904Z",
-      "tags": [],
-      "id": 6
-    },
-    {
-      "catagoryId": 4,
-      "authorId": 4,
-      "postTitle": "xcv",
-      "postDesc": "xcvvxc",
-      "dateTime": "2024-09-26T17:05:11.646Z",
-      "tags": [],
-      "id": 7
-    },
-    {
-      "catagoryId": 2,
-      "authorId": 5,
-      "postTitle": "asda",
-      "postDesc": "sasd",
-      "dateTime": "2024-09-26T18:15:55.020Z",
-      "tags": [],
-      "id": 8
     },
     {
       "catagoryId": 2,
       "authorId": 2,
-      "postTitle": "hgh",
-      "postDesc": "ghjgh",
-      "dateTime": "2024-09-26T18:17:29.708Z",
+      "postTitle": "The standard chunk of Lorem Ipsum used since the 1500s is reproduced below fo",
+      "postDesc": "The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from \"de Finibus Bonorum et Malorum\" by Cicero are also reproduced in their exact original form",
+      "dateTime": "2024-09-27T09:05:19.466Z",
       "tags": [],
-      "id": 9
+      "id": 6
     },
     {
-      "catagoryId": 4,
-      "authorId": 4,
-      "postTitle": "gfgf",
-      "postDesc": "fghfg",
-      "dateTime": "2024-09-26T18:18:27.747Z",
+      "catagoryId": 3,
+      "authorId": 3,
+      "postTitle": " All the Lorem Ipsum generators on the Internet tend to repeat p",
+      "postDesc": " All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on ",
+      "dateTime": "2024-09-27T09:06:20.074Z",
       "tags": [],
-      "id": 10
-    },
-    {
-      "catagoryId": "3",
-      "authorId": "3",
-      "postTitle": "fdgdgdgfdg",
-      "postDesc": "dfgdfgdfgdfg",
-      "dateTime": "2024-09-26T18:45:29.233Z",
-      "tags": [],
-      "id": 11
+      "id": 7
     }
   ],
   "comments": [

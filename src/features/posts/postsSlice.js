@@ -18,8 +18,8 @@ const initialState = {
     error:null
 }
 export const getPosts = createAsyncThunk('posts/getPosts',
-    async()=>{
-        const posts = await getApiPosts()
+    async(filterData)=>{
+        const posts = await getApiPosts(filterData)
         return posts
     }
 )
@@ -49,6 +49,7 @@ export const postsSlice = createSlice({
     reducers: {
         EDITABLE_BLOG:(state, action)=>{
             state.editablePost = action.payload
+            console.log(action.payload)
         },
     },
     extraReducers:(builder)=>{

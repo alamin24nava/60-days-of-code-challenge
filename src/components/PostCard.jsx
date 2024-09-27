@@ -7,6 +7,7 @@ import { useEffect, useState } from "react"
 import { FaRegClock } from "react-icons/fa6";
 import moment from "moment"
 import CreatePosts from "./CreatePosts"
+import FilterPosts from "./FilterPosts"
 const PostCard = ()=>{
     const {posts} = useSelector(usePostsGetSelector)
     const {catagories} = useSelector(useGetSelector)
@@ -18,16 +19,11 @@ const PostCard = ()=>{
         setIsModal(false)
     }
 
-    const pp = (data)=>{
-        console.log(data)
-    }
-
-
     const handleEdit = (blog)=>{
         dispatch(EDITABLE_BLOG(blog))
         setIsModal(true)
-        pp()
     }
+    console.log(handleEdit)
     useEffect(()=>{
         dispatch(getPosts())
         dispatch(getCatagories())
@@ -39,14 +35,15 @@ const PostCard = ()=>{
 
     return(
         <>
+        <FilterPosts/>
         <div className="grid grid-cols-4 gap-4">
             {
-                posts?.map((item)=>
+                posts?.map((item, i)=>
                 {
                     const postByCatagory = catagories?.find((findId)=> parseInt(findId.id) === parseInt(item.catagoryId))
                     const postByAuthor = authors?.find((findId)=> parseInt(findId.id) === parseInt(item.authorId))
                     return(
-                        <div key={item.id} className="card bg-base-100 shadow-xl">
+                        <div key={i} className="card bg-base-100 shadow-xl">
                             <figure>
                                 <img
                                 src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
@@ -99,7 +96,7 @@ const PostCard = ()=>{
             <div className="modal-box">
             <h3 className="font-bold text-lg">Hello!</h3>
             <p className="py-4">Press ESC key or click the button below to close</p>
-            <CreatePosts jabe={pp} isModal={isModal} setIsModal={setIsModal} onHandleEdit = {handleEdit}/>
+            <CreatePosts isModal={isModal} setIsModal={setIsModal} onHandleEdit = {handleEdit}/>
             <div className="modal-action">
                 <button className="btn" onClick={closeBtn}>Close</button>
        

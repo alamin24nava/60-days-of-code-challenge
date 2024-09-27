@@ -1,13 +1,37 @@
-const apiUrl = 'http://localhost:3000/posts'
+let apiUrl = 'http://localhost:3000/posts'
+
+
+
 // getApiPosts
-export const getApiPosts = async ()=>{
-    const response = await fetch(apiUrl)
+export const getApiPosts = async (filterData)=>{
+    let newFilter = apiUrl
+    if(filterData){
+        const {catagorySelect, authorSelect, tagSelect, searchSelect } = filterData
+        console.log(tagSelect)
+        if(catagorySelect){
+            newFilter = `${newFilter}?catagoryId=${catagorySelect}`
+        }
+        if(authorSelect){
+            newFilter = `${newFilter}?authorId=${authorSelect}`
+        }
+        if(tagSelect){
+            newFilter = `${newFilter}?tags=${tagSelect}`
+        }
+        if(searchSelect){
+            newFilter = `${newFilter}?postTitle=${searchSelect}`
+        }
+    }
+    const response = await fetch(newFilter)
     return response.json()
 }
+
+
+
+
+
 // postApiPosts
 export const postApiPosts = async (newPost)=>{
     const response = await fetch(apiUrl,
-
         {
             method:"POST",
             body:JSON.stringify(newPost),
@@ -19,7 +43,7 @@ export const postApiPosts = async (newPost)=>{
 // updateApiPosts
 export const updateApiPosts = async ({editablePost,dispatchUpdatePosts })=>{
     const {selectCatagory, selectAuthor, postTitle, postDesc} = dispatchUpdatePosts
-    console.log(dispatchUpdatePosts)
+
     const {id, ...rest} = editablePost;
     const updatedPost = {...rest, catagoryId:selectCatagory, authorId:selectAuthor, postDesc:postDesc, postTitle:postTitle}
     
