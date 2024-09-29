@@ -28,8 +28,19 @@ const FilterPosts = ()=>{
         e.preventDefault()
         dispatch(getPosts(inputValue))
     }
+    const handleReset = (e)=>{
+        e.preventDefault()
+        setInputValue({
+            catagorySelect:'',
+            authorSelect:'',
+            tagSelect:'',
+            searchSelect:''
+        })
+        dispatch(getPosts({inputValue:''}))
+    }
     return(
-        <form onSubmit={handleSubmit} className="mb-8">
+        <>
+        <form className="mb-8">
             <div className="flex gap-4">
                 <select onChange={handleChange} name='catagorySelect' value={inputValue.catagorySelect} className="select select-bordered w-full max-w-xs">
                     <option value="">-- Select Category --</option>
@@ -61,9 +72,11 @@ const FilterPosts = ()=>{
                 </select>
 
                 <input type="text" name='searchSelect' value={inputValue.searchSelect} onChange={handleChange} placeholder="Search Post" className="input input-bordered w-full max-w-xs" />
-                <button className="btn btn-primary">Filter</button>
+                <button onClick={handleSubmit} className="btn btn-primary">Filter</button>
+                <button onClick={handleReset} className="btn btn-error">Reset Filter</button>
             </div>
         </form>
+        </>
     )
 }
 export default FilterPosts

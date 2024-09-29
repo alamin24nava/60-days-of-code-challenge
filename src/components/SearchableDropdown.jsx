@@ -1,18 +1,14 @@
 import { useEffect, useRef, useState } from "react";
 import useOutsideClick from "../hooks/useOutsideClick";
-import {getTagsByName, useTagsSelector, postTags, getTags} from "../features/tags/tagsSlice"
+import {getTagsByName, useTagsSelector, postTags} from "../features/tags/tagsSlice"
 import { useDispatch, useSelector } from "react-redux";
 import toast from "react-hot-toast";
 
 
-const SearchableDropdown = (
-    // {selectedDropDown, setSelectedDropDowns}
-) => {
-    const [selectedDropDown, setSelectedDropDowns] = useState([])
+const SearchableDropdown = ({selectedDropDowns, setSelectedDropDowns}) => {
     const [open, setOpen] = useState(false)
     const [changeTagName, setChangeTagName] = useState('')
     const {tagsByName} = useSelector(useTagsSelector)
-    const {tags} = useSelector(useTagsSelector)
     const ref = useRef()
     const dispatch = useDispatch()
     const handleSeleteTag = ()=>{
@@ -25,19 +21,18 @@ const SearchableDropdown = (
         setChangeTagName(e.target.value)
     }
     const handleSelectedDropDown = (item)=>{
-        const alreadySelectedTag = selectedDropDown.find((r)=>( r?.id === item?.id))
+        const alreadySelectedTag = selectedDropDowns.find((r)=>( r?.id === item?.id))
         if(alreadySelectedTag){
           toast.error("Already Selected This Tag!")
           setChangeTagName('')
           return
         }
-        console.log(item);
-        setSelectedDropDowns([...selectedDropDown, item])
+        setSelectedDropDowns([...selectedDropDowns, item])
         setChangeTagName('')
         toast.success(`Successfully ${changeTagName} Tag Selected!`)
     }
     const removeSelectedDropDown = (id)=>{
-        const updatedDropDown = selectedDropDown.filter((item)=> item.id !== id)
+        const updatedDropDown = selectedDropDowns.filter((item)=> item.id !== id)
         setSelectedDropDowns(updatedDropDown)
     }
     useEffect(()=>{
@@ -68,10 +63,10 @@ const SearchableDropdown = (
             <div ref={ref}>
                 <div onClick={handleSeleteTag} className="border p-4 rounded-md mb-4">-- Select Tags --</div> 
                     {
-                        selectedDropDown.length > 0?
+                        selectedDropDowns.length > 0?
                         <div className="border flex gap-4 wrap p-4 py-2 rounded-md">
                             {
-                                selectedDropDown.map((item)=>
+                                selectedDropDowns.map((item)=>
                                     <div key={item.id} role="alert" className="alert w-auto py-1 px-2">
                                         <span>{item.name}</span>
                                         <svg onClick={()=>removeSelectedDropDown(item.id)}

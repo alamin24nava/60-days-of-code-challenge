@@ -8,17 +8,18 @@ export const getApiPosts = async (filterData)=>{
     if(filterData){
         const {catagorySelect, authorSelect, tagSelect, searchSelect } = filterData
         console.log(tagSelect)
-        if(catagorySelect){
+        if(catagorySelect && authorSelect && searchSelect){
+            newFilter = `${newFilter}?catagoryId=${catagorySelect}&authorId=${authorSelect}&postTitle=${searchSelect}`
+        }else if(catagorySelect && authorSelect){
+            newFilter = `${newFilter}?catagoryId=${catagorySelect}&authorId=${authorSelect}`
+        }else if(catagorySelect){
             newFilter = `${newFilter}?catagoryId=${catagorySelect}`
-        }
-        if(authorSelect){
+        }else if(authorSelect){
             newFilter = `${newFilter}?authorId=${authorSelect}`
-        }
-        if(tagSelect){
-            newFilter = `${newFilter}?tags=${tagSelect}`
-        }
-        if(searchSelect){
+        }else if(searchSelect){
             newFilter = `${newFilter}?postTitle=${searchSelect}`
+        }else if(tagSelect){
+            newFilter = `${newFilter}?tags=${tagSelect}`
         }
     }
     const response = await fetch(newFilter)

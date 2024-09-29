@@ -49,7 +49,6 @@ export const postsSlice = createSlice({
     reducers: {
         EDITABLE_BLOG:(state, action)=>{
             state.editablePost = action.payload
-            console.log(action.payload)
         },
     },
     extraReducers:(builder)=>{
@@ -75,10 +74,9 @@ export const postsSlice = createSlice({
             state.isError = false;
             state.isLoading = true;
         })
-        .addCase(postPosts.fulfilled, (state, action)=>{
+        .addCase(postPosts.fulfilled, (state)=>{
             state.isError = false;
             state.isLoading = false;
-            // console.log(state.isError)
         })
         .addCase(postPosts.rejected, (state, action)=>{
             state.isLoading = false;
@@ -87,27 +85,26 @@ export const postsSlice = createSlice({
         })
 
 
-    //     // deleteTags
-    //     .addCase(deleteTags.pending, (state)=>{
-    //         state.isError = false;
-    //         state.isLoading = true;
-    //     })
-    //     .addCase(deleteTags.fulfilled, (state, action)=>{
-    //         state.isError = false;
-    //         state.isLoading = false;
-    //         state.tags = state.tags.filter((item)=> item.id !== action.payload)
-    //     })
-    //     .addCase(deleteTags.rejected, (state, action)=>{
-    //         state.isLoading = false;
-    //         state.isError = true;
-    //         state.error = action.error.message
-    //     })
+        // deleteTags
+        .addCase(deletePosts.pending, (state)=>{
+            state.isError = false;
+            state.isLoading = true;
+        })
+        .addCase(deletePosts.fulfilled, (state, action)=>{
+            state.isError = false;
+            state.isLoading = false;
+            state.posts = state.posts.filter((item)=> item.id !== action.payload)
+        })
+        .addCase(deletePosts.rejected, (state, action)=>{
+            state.isLoading = false;
+            state.isError = true;
+            state.error = action.error.message
+        })
 
 
         .addCase(updatePosts.fulfilled, (state, action)=>{
             state.isLoading = false;
             state.isError = false;
-            console.log(action.payload)
             const findIndex = state.posts.findIndex(post => post.id === action.payload.id)
             state.posts[findIndex] = action.payload
             state.editablePost = null

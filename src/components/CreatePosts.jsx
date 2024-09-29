@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { useGetSelector, getCatagories } from "../features/catagories/catagoriesSlice"
 import { useAuthorsSelector, dependentAuthorsByCategory } from "../features/authors/authorsSlice"
 import {postPosts, updatePosts, usePostsGetSelector} from '../features/posts/postsSlice'
+import {useTagsSelector} from '../features/tags/tagsSlice'
 import { getTags } from "../features/tags/tagsSlice"
 import { useEffect, useState } from "react"
 import moment from "moment"
@@ -10,9 +11,10 @@ import SearchableDropdown from "./SearchableDropdown"
 const CreatePosts = (props)=>{
     const {catagories} = useSelector(useGetSelector)
     const {editablePost} = useSelector(usePostsGetSelector)
+    const {tags} = useSelector(useTagsSelector)
     const {authorsByCategories} = useSelector(useAuthorsSelector)
-    const [selectedDropDown, setSelectedDropDown] = useState([])
-    let selectedTagId = selectedDropDown.map( (item) => item.id);
+    const [selectedDropDowns, setSelectedDropDowns] = useState([])
+    let selectedTagId = selectedDropDowns.map( (item) => item.id);
     const [selectCatagory, setSelectCatagory] = useState('')
     const [selectAuthor, setSelectAuthor] = useState('')
     const [postTitle, setPostTitle] = useState('')
@@ -53,10 +55,11 @@ const CreatePosts = (props)=>{
                 selectCatagory,
                 selectAuthor,
                 postTitle,
-                postDesc
+                postDesc,
+                selectedTagId
             }
             dispatch(updatePosts({editablePost,dispatchUpdatePosts }))
-            toast.success('Post Added Updated!')
+            toast.success('Post Updated!')
             props.setIsModal(false)
         }
         
@@ -65,6 +68,20 @@ const CreatePosts = (props)=>{
         setPostDesc('')
         setPostTitle('')
     }
+    const isEditablePost = ()=>{
+        if(editablePost){
+            setSelectCatagory(editablePost.catagoryId)
+            dispatch(dependentAuthorsByCategory(editablePost.catagoryId))
+            setSelectAuthor(authorsByCategories.name)
+            setPostTitle(editablePost.postTitle)
+            setPostDesc(editablePost.postDesc)
+            setSelectedDropDowns(editablePost.tags)
+        }
+    }
+    useEffect(()=>{
+        isEditablePost()
+    },[editablePost])
+
     useEffect(()=>{
         dispatch(getTags())
         dispatch(getCatagories())
@@ -103,7 +120,7 @@ const CreatePosts = (props)=>{
                     <div className="mb-3">
                         <textarea onChange={handlePostDesc} value={postDesc} className="textarea textarea-bordered" placeholder="Post Description"></textarea>
                     </div>
-                    <SearchableDropdown selectedDropDown={selectedDropDown} setSelectedDropDown={setSelectedDropDown}/>                              
+                    <SearchableDropdown selectedDropDowns={selectedDropDowns} setSelectedDropDowns={setSelectedDropDowns}/>                              
                     <div className="col-12">
                         <button type="button" onClick={handleSubmit} className="btn btn-primary">{!editablePost ? "Create Post":"Updated Post"}</button>
                     </div>
