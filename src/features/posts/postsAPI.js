@@ -4,30 +4,33 @@ let apiUrl = 'http://localhost:3000/posts'
 
 // getApiPosts
 export const getApiPosts = async (filterData)=>{
-    let newFilter = apiUrl
+
+    // let newFilter = apiUrl
+    let newUrl 
+    
     if(filterData){
-        const {catagorySelect, authorSelect, tagSelect, searchSelect } = filterData
-        console.log(tagSelect)
+        const {catagorySelect, authorSelect, tagSelect, searchSelect,limit, page } = filterData
+        console.log(page)
+
+        newUrl = `${apiUrl}?_page=${page}&_limit=${limit}`
+
         if(catagorySelect && authorSelect && searchSelect){
-            newFilter = `${newFilter}?catagoryId=${catagorySelect}&authorId=${authorSelect}&postTitle=${searchSelect}`
+            newUrl = `${newUrl}&catagoryId=${catagorySelect}&authorId=${authorSelect}&postTitle=${searchSelect}`
         }else if(catagorySelect && authorSelect){
-            newFilter = `${newFilter}?catagoryId=${catagorySelect}&authorId=${authorSelect}`
+            newUrl = `${newUrl}&catagoryId=${catagorySelect}&authorId=${authorSelect}`
         }else if(catagorySelect){
-            newFilter = `${newFilter}?catagoryId=${catagorySelect}`
+            newUrl = `${newUrl}&catagoryId=${catagorySelect}`
         }else if(authorSelect){
-            newFilter = `${newFilter}?authorId=${authorSelect}`
+            newUrl = `${newUrl}&authorId=${authorSelect}`
         }else if(searchSelect){
-            newFilter = `${newFilter}?postTitle=${searchSelect}`
+            newUrl = `${newUrl}&postTitle=${searchSelect}`
         }else if(tagSelect){
-            newFilter = `${newFilter}?tags=${tagSelect}`
+            newUrl = `${newUrl}&tags=${tagSelect}`
         }
     }
-    const response = await fetch(newFilter)
+    const response = await fetch(newUrl)
     return response.json()
 }
-
-
-
 
 
 // postApiPosts

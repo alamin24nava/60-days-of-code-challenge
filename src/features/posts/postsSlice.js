@@ -15,7 +15,8 @@ const initialState = {
     editablePost:null,    
     isLoading:false,
     isError:false,
-    error:null
+    error:null,
+    readablePost:null
 }
 export const getPosts = createAsyncThunk('posts/getPosts',
     async(filterData)=>{
@@ -50,6 +51,10 @@ export const postsSlice = createSlice({
         EDITABLE_BLOG:(state, action)=>{
             state.editablePost = action.payload
         },
+        READABLE_BLOG:(state, action)=>{
+            state.readablePost = action.payload
+            console.log(action.payload)
+        }
     },
     extraReducers:(builder)=>{
         builder
@@ -115,5 +120,5 @@ export const postsSlice = createSlice({
 
 // Action creators are generated for each case reducer function
 export const usePostsGetSelector = (state)=> state.posts
-export const { EDITABLE_BLOG } = postsSlice.actions
+export const { EDITABLE_BLOG,READABLE_BLOG } = postsSlice.actions
 export default postsSlice.reducer

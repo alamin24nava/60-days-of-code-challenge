@@ -1,11 +1,14 @@
 import { useDispatch, useSelector } from "react-redux"
 import {useGetSelector} from "../features/catagories/catagoriesSlice"
 import {getPosts} from '../features/posts/postsSlice'
-import {useAuthorsSelector} from "../features/authors/authorsSlice"
+import {useAuthorsSelector, dependentAuthorsByCategory} from "../features/authors/authorsSlice"
 import {useTagsSelector} from "../features/tags/tagsSlice"
-import { useState } from "react"
 
-const FilterPosts = ()=>{
+import { useEffect, useState } from "react"
+
+const FilterPosts = ({setCurrentPage, _onClickCatagory, _onClickAuthor, limit, currentPage})=>{
+
+    const {authorsByCategories} = useSelector(useAuthorsSelector)
     const {catagories} = useSelector(useGetSelector)
     const {authors} = useSelector(useAuthorsSelector)
     const {tags} = useSelector(useTagsSelector)
@@ -15,6 +18,7 @@ const FilterPosts = ()=>{
         tagSelect:'',
         searchSelect:''
     })
+
     const dispatch = useDispatch()
     const handleChange = (e)=>{
         const {name, value} = e.target
@@ -22,11 +26,23 @@ const FilterPosts = ()=>{
             ...prevState,
             [name]:value
         }))
+
+        if(name == 'catagorySelect'){
+            dispatch(dependentAuthorsByCategory(value))
+        }
     }
 
     const handleSubmit = (e)=>{
         e.preventDefault()
-        dispatch(getPosts(inputValue))
+        dispatch(getPosts({
+            catagorySelect:inputValue.catagorySelect,
+            authorSelect:inputValue.authorSelect,
+            tagSelect:inputValue.tagSelect,
+            searchSelect:inputValue.searchSelect,
+            limit:limit, 
+            page:currentPage
+        }))
+        setCurrentPage(1)
     }
     const handleReset = (e)=>{
         e.preventDefault()
@@ -36,16 +52,29 @@ const FilterPosts = ()=>{
             tagSelect:'',
             searchSelect:''
         })
-        dispatch(getPosts({inputValue:''}))
+        dispatch(getPosts({
+            inputValue:'',
+            limit:limit, 
+            page:currentPage
+        }))
+        setCurrentPage(1)
     }
+    useEffect(()=>{
+        setInputValue({catagorySelect:_onClickCatagory.id})
+    },[_onClickCatagory])
+    useEffect(()=>{
+        setInputValue({authorSelect:_onClickAuthor.id})
+    },[_onClickAuthor])
     return(
         <>
         <form className="mb-8">
             <div className="flex gap-4">
+            {/* {console.log("sdcsd", inputValue.catagorySelect)} */}
                 <select onChange={handleChange} name='catagorySelect' value={inputValue.catagorySelect} className="select select-bordered w-full max-w-xs">
                     <option value="">-- Select Category --</option>
                     {
                     catagories &&
+                    
                     catagories?.map((catagory, i)=>
                         <option id={catagory?.id} value={catagory?.id} key={i}>{catagory?.title}</option>               
                     ) 
@@ -54,9 +83,9 @@ const FilterPosts = ()=>{
 
                 <select onChange={handleChange} name='authorSelect' value={inputValue.authorSelect} className="select select-bordered w-full max-w-xs">
                     <option value="">-- Select Author --</option>
-                    {
-                    authors &&
-                    authors?.map((author, i)=>
+                    
+                    {  
+                    (inputValue.catagorySelect == undefined ? authors:authorsByCategories).map((author, i)=>
                         <option id={author?.id} value={author?.id} key={i}>{author?.name}</option>               
                     ) 
                     }

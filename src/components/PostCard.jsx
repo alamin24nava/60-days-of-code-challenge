@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux"
-import { usePostsGetSelector, getPosts, deletePosts, EDITABLE_BLOG } from "../features/posts/postsSlice"
+import { usePostsGetSelector, getPosts, deletePosts, EDITABLE_BLOG, READABLE_BLOG } from "../features/posts/postsSlice"
 import { useGetSelector, getCatagories} from "../features/catagories/catagoriesSlice"
 import { useAuthorsSelector, getAuthors} from "../features/authors/authorsSlice"
 import { useTagsSelector, getTags} from "../features/tags/tagsSlice"
@@ -10,7 +10,7 @@ import CreatePosts from "./CreatePosts"
 import FilterPosts from "./FilterPosts"
 import DataNotFound from "./DataNotFound"
 import GlobalLoading from "./GlobalLoading"
-const PostCard = ()=>{
+const PostCard = ({currentPage, limit, setCurrentPage})=>{
     const {posts, isLoading} = useSelector(usePostsGetSelector)
     const {catagories} = useSelector(useGetSelector)
     const {authors} = useSelector(useAuthorsSelector)
@@ -25,6 +25,7 @@ const PostCard = ()=>{
         dispatch(EDITABLE_BLOG(blog))
         setIsModal(true)
     }
+
     const handleDelete = (id)=>{
         dispatch(deletePosts(id))
     }
@@ -34,14 +35,20 @@ const PostCard = ()=>{
         dispatch(getAuthors())
         dispatch(getTags())
     }, [dispatch])
-
-    const handleCagagory = (id)=>{
-        console.log(id)
+    const [catId, setCatId] = useState({})
+    const [authId, setAuthId] = useState({})
+    const handleCagagory = (postByCatagory)=>{
+        setCatId(postByCatagory)
     }
-
+    const handleAuthor = (postByAuthor)=>{
+        setAuthId(postByAuthor)
+    }
+    const handleRead = (blog)=>{
+        dispatch(READABLE_BLOG(blog))
+    }
     return(
         <>
-        <FilterPosts/>
+        <FilterPosts currentPage ={currentPage} limit={limit} setCurrentPage={setCurrentPage} _onClickAuthor={authId} _onClickCatagory = {catId}/>
         {
             !isLoading == true ? 
             posts.length > 0 ?
@@ -60,16 +67,16 @@ const PostCard = ()=>{
                                 </figure>
                                 <div className="card-body p-4">
                                     <div className="flex justify-between items-center">
-                                        <div onClick={()=>handleCagagory(postByCatagory?.id)} className="badge badge-secondary">{postByCatagory?.title}</div>
+                                        <div onClick={()=>handleCagagory(postByCatagory)} className="badge badge-secondary cursor-pointer">{postByCatagory?.title}</div>
                                         <div className="flex gap-2 justify-center items-center">
                                             <FaRegClock />
                                             <p className="text-xs">{moment(item.dateTime).format('MMM Do YYYY')}</p>
                                         </div>
                                     </div>
                                     <h2 className="card-title">{item?.postTitle}</h2>
-                                    <div className="badge badge-primary">Author By: {postByAuthor?.name}</div>
+                                    <div onClick={()=>handleAuthor(postByAuthor)} className="badge badge-primary cursor-pointer">Author By: <span className="ps-2 cursor-pointer"></span>{postByAuthor?.name}</div>
                                     <p>{item.postDesc}</p>
-                                    <a className="link" href="#">Read More</a>
+                                    <a className="link" href="#" onClick={()=> handleRead(item)}>Read More</a>
                                     <div className="flex justify-between items-center gap-2">
                                         <div className="flex gap-2">
                                         <button className="btn btn-neutral btn-sm" onClick={()=> handleEdit(item)} type="button">Edit</button>

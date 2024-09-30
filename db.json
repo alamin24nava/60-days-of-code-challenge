@@ -92,7 +92,7 @@
     },
     {
       "catagoryId": 2,
-      "authorId": "2",
+      "authorId": "5",
       "postTitle": "What is Lorem Ipsum?",
       "postDesc": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it ",
       "dateTime": "2024-09-29T09:16:07.416Z",
@@ -122,6 +122,15 @@
         2
       ],
       "id": 10
+    },
+    {
+      "catagoryId": 2,
+      "authorId": 5,
+      "postTitle": "asd",
+      "postDesc": "asd",
+      "dateTime": "2024-09-30T08:56:51.514Z",
+      "tags": [],
+      "id": 11
     }
   ],
   "comments": [
