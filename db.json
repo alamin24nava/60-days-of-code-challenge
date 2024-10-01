@@ -37,6 +37,15 @@
       "name": "Alamin",
       "catagoryId": 2,
       "id": 5
+    },
+    {
+      "id": 6
+    },
+    {
+      "id": 7
+    },
+    {
+      "id": 8
     }
   ],
   "tags": [
@@ -131,16 +140,33 @@
       "dateTime": "2024-09-30T08:56:51.514Z",
       "tags": [],
       "id": 11
+    },
+    {
+      "catagoryId": 3,
+      "authorId": 3,
+      "postTitle": "sdfsdf",
+      "postDesc": "sdfsdf",
+      "dateTime": "2024-10-01T04:55:54.764Z",
+      "tags": [
+        1,
+        2
+      ],
+      "id": 12
     }
   ],
   "comments": [
     {
-      "blog_id": 1,
-      "comment": "goog job"
+      "id": 1,
+      "blogId": 3,
+      "commentDesc": "goog job"
     },
     {
-      "blog_id": 1,
-      "comment": "Lorem Ipsum is simply dummy text of the printing and typesetting industry"
+      "id": 2,
+      "blogId": 3,
+      "commentDesc": "Lorem Ipsum is simply dummy text of the printing and typesetting industry"
+    },
+    {
+      "id": 3
     }
   ]
 }

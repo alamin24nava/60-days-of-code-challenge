@@ -31,7 +31,10 @@ export const getApiPosts = async (filterData)=>{
     const response = await fetch(newUrl)
     return response.json()
 }
-
+export const singlePostApi = async (id)=>{
+    const response = await fetch(`${apiUrl}/${id}`)
+    return response.json()
+}
 
 // postApiPosts
 export const postApiPosts = async (newPost)=>{

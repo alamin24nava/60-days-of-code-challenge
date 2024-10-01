@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import {postApiPosts, deleteApiPosts, getApiPosts, updateApiPosts} from '../posts/postsAPI'
+import {postApiPosts, deleteApiPosts, getApiPosts, updateApiPosts, singlePostApi} from '../posts/postsAPI'
 const initialState = {
     posts:[
         {
@@ -21,6 +21,12 @@ const initialState = {
 export const getPosts = createAsyncThunk('posts/getPosts',
     async(filterData)=>{
         const posts = await getApiPosts(filterData)
+        return posts
+    }
+)
+export const getSinglePost = createAsyncThunk('posts/getSinglePost',
+    async(id)=>{
+        const posts = await singlePostApi(id)
         return posts
     }
 )
@@ -53,7 +59,6 @@ export const postsSlice = createSlice({
         },
         READABLE_BLOG:(state, action)=>{
             state.readablePost = action.payload
-            console.log(action.payload)
         }
     },
     extraReducers:(builder)=>{
@@ -113,8 +118,15 @@ export const postsSlice = createSlice({
             const findIndex = state.posts.findIndex(post => post.id === action.payload.id)
             state.posts[findIndex] = action.payload
             state.editablePost = null
-
         })
+
+        .addCase(getSinglePost.fulfilled, (state, action)=>{
+            state.isLoading = false;
+            state.isError = false;
+            state.posts = action.payload
+            // console.log(action.payload)
+        })
+        
     }
 })
 

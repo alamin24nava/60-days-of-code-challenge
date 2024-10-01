@@ -10,6 +10,7 @@ import CreatePosts from "./CreatePosts"
 import FilterPosts from "./FilterPosts"
 import DataNotFound from "./DataNotFound"
 import GlobalLoading from "./GlobalLoading"
+import { Link } from "react-router-dom"
 const PostCard = ({currentPage, limit, setCurrentPage})=>{
     const {posts, isLoading} = useSelector(usePostsGetSelector)
     const {catagories} = useSelector(useGetSelector)
@@ -75,8 +76,8 @@ const PostCard = ({currentPage, limit, setCurrentPage})=>{
                                     </div>
                                     <h2 className="card-title">{item?.postTitle}</h2>
                                     <div onClick={()=>handleAuthor(postByAuthor)} className="badge badge-primary cursor-pointer">Author By: <span className="ps-2 cursor-pointer"></span>{postByAuthor?.name}</div>
-                                    <p>{item.postDesc}</p>
-                                    <a className="link" href="#" onClick={()=> handleRead(item)}>Read More</a>
+                                    <p>{item.postDesc}</p>                                   
+                                    <Link className="link" to={`${item.id}`}>Read More</Link>
                                     <div className="flex justify-between items-center gap-2">
                                         <div className="flex gap-2">
                                         <button className="btn btn-neutral btn-sm" onClick={()=> handleEdit(item)} type="button">Edit</button>
