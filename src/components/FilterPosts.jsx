@@ -29,6 +29,10 @@ const FilterPosts = ({setCurrentPage, _onClickCatagory, _onClickAuthor, limit, c
 
         if(name == 'catagorySelect'){
             dispatch(dependentAuthorsByCategory(value))
+            setInputValue((prevState)=>({
+                ...prevState,
+                authorSelect:''
+            }))
         }
     }
 

@@ -34,14 +34,17 @@ const Blog = ()=>{
             <div className="badge badge-secondary">Category : {showCatagory?.title}</div>
             <div className="badge badge-primary">Author by:  {showAuthor?.name}</div>
             <p>{posts.postDesc}</p>
-            <div>
+            <div className="flex gap-2 items-center">
+                <div>Tags:</div>
+                <div className="flex gap-1">
                 {
                     filterTags.map((item,index)=>
                         <div key={index} className="badge badge-secondary">{item.name}</div>
                     )
                 }
+                </div>
             </div>
-            <Comments _posts = {posts}/>
+            <Comments _posts = {posts} id={id}/>
         </div>
     )
 }

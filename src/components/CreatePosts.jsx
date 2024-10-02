@@ -67,6 +67,7 @@ const CreatePosts = (props)=>{
         setSelectAuthor('')
         setPostDesc('')
         setPostTitle('')
+        selectedTagId = ''
     }
     const isEditablePost = ()=>{
         if(editablePost){
@@ -86,7 +87,7 @@ const CreatePosts = (props)=>{
         dispatch(getTags())
         dispatch(getCatagories())
     },[dispatch])
-
+    console.log(selectedTagId)
     return(
         <div className="w-full">
             <div className="border rounded-md p-6">

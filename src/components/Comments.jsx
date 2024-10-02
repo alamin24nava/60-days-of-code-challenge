@@ -1,13 +1,12 @@
 import { useDispatch, useSelector } from "react-redux"
 import {useCommentsSelector, getComments, postComments} from "../features/comments/commentsSlice"
 import { useEffect, useState } from "react"
-const Comments =({_posts})=>{
+const Comments =({_posts, id})=>{
     const [comment, setCommnet] = useState('')
     const dispatch = useDispatch()
     const {comments} = useSelector(useCommentsSelector)
     useEffect(()=>{
         dispatch(getComments())
-        dispatch(postComments('hello'))
     },[dispatch])
     const filterComments = comments?.filter((comment) => comment.blogId == _posts.id);
 
@@ -15,13 +14,23 @@ const Comments =({_posts})=>{
         setCommnet(e.target.value)
     }
 
-    console.log(comment)
+    const handleSubmit =(e)=>{
+        e.preventDefault()
+        dispatch(postComments({
+            blogId: id,
+            commentDesc : comment
+        }))
+
+        setCommnet('')
+    }
     return(
        <div>
-            <div className="mt-6">
-                <textarea onChange={handleComment} className="textarea textarea-bordered w-full" placeholder="Bio"></textarea>
+        <div className="text-4xl">Comment <span>({filterComments.length})</span></div>
+        
+            <form onSubmit={handleSubmit} className="mt-6">
+                <textarea onChange={handleComment} value={comment} className="textarea textarea-bordered w-full" placeholder="Bio"></textarea>
                 <button className="btn">Comment</button>
-            </div>
+            </form>
             <div className="flex flex-col gap-3">
                 {
                     filterComments.map((item, index)=>
