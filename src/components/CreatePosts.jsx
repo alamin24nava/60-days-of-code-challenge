@@ -24,6 +24,8 @@ const CreatePosts = (props)=>{
         setSelectCatagory(e.target.value)
         dispatch(dependentAuthorsByCategory(e.target.value))
     }
+    console.log(selectedDropDowns)
+
     const handleSelectAuthors = (e)=>{
         setSelectAuthor(e.target.value)
     }
@@ -67,7 +69,7 @@ const CreatePosts = (props)=>{
         setSelectAuthor('')
         setPostDesc('')
         setPostTitle('')
-        selectedTagId = ''
+        setSelectedDropDowns([])
     }
     const isEditablePost = ()=>{
         if(editablePost){
@@ -87,7 +89,6 @@ const CreatePosts = (props)=>{
         dispatch(getTags())
         dispatch(getCatagories())
     },[dispatch])
-    console.log(selectedTagId)
     return(
         <div className="w-full">
             <div className="border rounded-md p-6">

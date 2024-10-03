@@ -47,6 +47,8 @@ const PostCard = ({currentPage, limit, setCurrentPage})=>{
     const handleRead = (blog)=>{
         dispatch(READABLE_BLOG(blog))
     }
+    // let txt = "hello im a new dev option"
+    // console.log(txt.slice(0, 8))
     return(
         <>
         <FilterPosts currentPage ={currentPage} limit={limit} setCurrentPage={setCurrentPage} _onClickAuthor={authId} _onClickCatagory = {catId}/>
@@ -76,7 +78,7 @@ const PostCard = ({currentPage, limit, setCurrentPage})=>{
                                     </div>
                                     <h2 className="card-title">{item?.postTitle}</h2>
                                     <div onClick={()=>handleAuthor(postByAuthor)} className="badge badge-primary cursor-pointer">Author By: <span className="ps-2 cursor-pointer"></span>{postByAuthor?.name}</div>
-                                    <p>{item.postDesc}</p>                                   
+                                    <p>{item.postDesc.slice(0, 100) + ' ...'}</p>                                   
                                     <Link className="link" to={`${item.id}`}>Read More</Link>
                                     <div className="flex justify-between items-center gap-2">
                                         <div className="flex gap-2">

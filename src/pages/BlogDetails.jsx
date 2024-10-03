@@ -44,6 +44,7 @@ const Blog = ()=>{
                 }
                 </div>
             </div>
+            
             <Comments _posts = {posts} id={id}/>
         </div>
     )

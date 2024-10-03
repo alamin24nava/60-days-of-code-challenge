@@ -1,19 +1,10 @@
 let apiUrl = 'http://localhost:3000/posts'
-
-
-
 // getApiPosts
 export const getApiPosts = async (filterData)=>{
-
-    // let newFilter = apiUrl
-    let newUrl 
-    
+    let newUrl
     if(filterData){
         const {catagorySelect, authorSelect, tagSelect, searchSelect,limit, page } = filterData
-        console.log(page)
-
         newUrl = `${apiUrl}?_page=${page}&_limit=${limit}`
-
         if(catagorySelect && authorSelect && searchSelect){
             newUrl = `${newUrl}&catagoryId=${catagorySelect}&authorId=${authorSelect}&postTitle=${searchSelect}`
         }else if(catagorySelect && authorSelect){

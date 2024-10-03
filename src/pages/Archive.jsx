@@ -7,7 +7,7 @@ const Archive = ()=>{
     const [totalPage, setTotalPage] = useState(0)
     const [currentPage, setCurrentPage] = useState(1)
     const [limit, setLimit] = useState(4)
-    const totalPost = 7;
+    const totalPost = 8;
 
 
     const dispatch = useDispatch()
